@@ -23,6 +23,12 @@
 		48A656E718163C1B00746D36 /* CompanyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48A656E518163C1B00746D36 /* CompanyViewController.xib */; };
 		48A656EB18163F8700746D36 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A656E918163F8700746D36 /* ProductViewController.m */; };
 		48A656EE1816468000746D36 /* Sunflower.gif in Resources */ = {isa = PBXBuildFile; fileRef = 48A656ED1816468000746D36 /* Sunflower.gif */; };
+		4AAB1C2C1C6D2991002C3DE9 /* samsung-logo.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB1C2B1C6D2991002C3DE9 /* samsung-logo.jpeg */; };
+		4AAB1C301C6D299C002C3DE9 /* Blackberry_Logo_without_wordmark.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB1C2D1C6D299C002C3DE9 /* Blackberry_Logo_without_wordmark.svg.png */; };
+		4AAB1C311C6D299C002C3DE9 /* HTC.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB1C2E1C6D299C002C3DE9 /* HTC.jpeg */; };
+		4AAB1C321C6D299C002C3DE9 /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB1C2F1C6D299C002C3DE9 /* apple.png */; };
+		4AAB1C3B1C6E3AA3002C3DE9 /* WebSitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB1C3A1C6E3AA3002C3DE9 /* WebSitViewController.m */; };
+		4AAB1C3D1C6E493A002C3DE9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAB1C3C1C6E493A002C3DE9 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +64,13 @@
 		48A656E818163F8700746D36 /* ProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductViewController.h; path = ../ProductViewController.h; sourceTree = "<group>"; };
 		48A656E918163F8700746D36 /* ProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductViewController.m; path = ../ProductViewController.m; sourceTree = "<group>"; };
 		48A656ED1816468000746D36 /* Sunflower.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Sunflower.gif; sourceTree = "<group>"; };
+		4AAB1C2B1C6D2991002C3DE9 /* samsung-logo.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "samsung-logo.jpeg"; sourceTree = "<group>"; };
+		4AAB1C2D1C6D299C002C3DE9 /* Blackberry_Logo_without_wordmark.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blackberry_Logo_without_wordmark.svg.png; sourceTree = "<group>"; };
+		4AAB1C2E1C6D299C002C3DE9 /* HTC.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = HTC.jpeg; sourceTree = "<group>"; };
+		4AAB1C2F1C6D299C002C3DE9 /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apple.png; sourceTree = "<group>"; };
+		4AAB1C391C6E3AA3002C3DE9 /* WebSitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebSitViewController.h; path = ../WebSitViewController.h; sourceTree = "<group>"; };
+		4AAB1C3A1C6E3AA3002C3DE9 /* WebSitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebSitViewController.m; path = ../WebSitViewController.m; sourceTree = "<group>"; };
+		4AAB1C3C1C6E493A002C3DE9 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AAB1C3D1C6E493A002C3DE9 /* WebKit.framework in Frameworks */,
 				48A656B718163BF200746D36 /* CoreGraphics.framework in Frameworks */,
 				48A656B918163BF200746D36 /* UIKit.framework in Frameworks */,
 				48A656B518163BF200746D36 /* Foundation.framework in Frameworks */,
@@ -107,6 +121,8 @@
 			children = (
 				48A656E818163F8700746D36 /* ProductViewController.h */,
 				48A656E918163F8700746D36 /* ProductViewController.m */,
+				4AAB1C391C6E3AA3002C3DE9 /* WebSitViewController.h */,
+				4AAB1C3A1C6E3AA3002C3DE9 /* WebSitViewController.m */,
 			);
 			name = ProductViewController;
 			sourceTree = "<group>";
@@ -114,6 +130,10 @@
 		48A656A818163BF200746D36 = {
 			isa = PBXGroup;
 			children = (
+				4AAB1C2B1C6D2991002C3DE9 /* samsung-logo.jpeg */,
+				4AAB1C2D1C6D299C002C3DE9 /* Blackberry_Logo_without_wordmark.svg.png */,
+				4AAB1C2E1C6D299C002C3DE9 /* HTC.jpeg */,
+				4AAB1C2F1C6D299C002C3DE9 /* apple.png */,
 				48A656BA18163BF200746D36 /* NavCtrl */,
 				48A656D318163BF200746D36 /* NavCtrlTests */,
 				48A656B318163BF200746D36 /* Frameworks */,
@@ -133,6 +153,7 @@
 		48A656B318163BF200746D36 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4AAB1C3C1C6E493A002C3DE9 /* WebKit.framework */,
 				48A656B418163BF200746D36 /* Foundation.framework */,
 				48A656B618163BF200746D36 /* CoreGraphics.framework */,
 				48A656B818163BF200746D36 /* UIKit.framework */,
@@ -263,7 +284,11 @@
 				48A656EE1816468000746D36 /* Sunflower.gif in Resources */,
 				48A656E718163C1B00746D36 /* CompanyViewController.xib in Resources */,
 				48A656BF18163BF200746D36 /* InfoPlist.strings in Resources */,
+				4AAB1C2C1C6D2991002C3DE9 /* samsung-logo.jpeg in Resources */,
 				48A656C718163BF200746D36 /* Images.xcassets in Resources */,
+				4AAB1C311C6D299C002C3DE9 /* HTC.jpeg in Resources */,
+				4AAB1C321C6D299C002C3DE9 /* apple.png in Resources */,
+				4AAB1C301C6D299C002C3DE9 /* Blackberry_Logo_without_wordmark.svg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +309,7 @@
 			files = (
 				48A656E618163C1B00746D36 /* CompanyViewController.m in Sources */,
 				48A656C518163BF200746D36 /* NavControllerAppDelegate.m in Sources */,
+				4AAB1C3B1C6E3AA3002C3DE9 /* WebSitViewController.m in Sources */,
 				48A656C118163BF200746D36 /* main.m in Sources */,
 				48A656EB18163F8700746D36 /* ProductViewController.m in Sources */,
 			);
