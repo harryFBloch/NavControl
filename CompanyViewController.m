@@ -8,6 +8,8 @@
 
 #import "CompanyViewController.h"
 #import "ProductViewController.h"
+#import "Company.h"
+#import "Product.h"
 
 @interface CompanyViewController ()
 
@@ -35,16 +37,12 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-   
-    if (self.i==0) {
-        
+    self.data = [[Dao alloc]init];
+    [self.data createCompanies];
     
-    self.companyList = [NSMutableArray arrayWithObjects: @"Apple mobile devices",@"Samsung mobile devices",@"HTC mobile devices",@"Blackberry mobile devices",nil];
-    self.title = @"Mobile device makers";
-    
-    self.imgArray = @[@"apple.png",@"samsung-logo.jpeg",@"HTC.jpeg",@"Blackberry_Logo_without_wordmark.svg"];
+
     }
-}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -65,7 +63,7 @@
 {
 //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [self.companyList count];
+    return [self.data.companyList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -78,8 +76,8 @@
     
     // Configure the cell...
     
-    self.cell.textLabel.text = [self.companyList objectAtIndex:[indexPath row]];
-    self.cell.imageView.image =[UIImage imageNamed:[self.imgArray objectAtIndex:indexPath.row]];
+    self.cell.textLabel.text = [self.data.companynames objectAtIndex:[indexPath row]];
+    self.cell.imageView.image =[UIImage imageNamed:[self.data.imgArray objectAtIndex:indexPath.row]];
     
     return self.cell;
 }
@@ -99,10 +97,12 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [self.companyList removeObjectAtIndex:indexPath.row];
+        [self.data.companyList removeObjectAtIndex:indexPath.row];
+        [self.data.companynames removeObjectAtIndex:indexPath.row];
+        [self.data.imgArray removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [tableView reloadData];
-        self.i++;
+        
     }   
 //    else if (editingStyle == UITableViewCellEditingStyleInsert) {
 //        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -114,9 +114,11 @@
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
-    NSString *tempString = [self.companyList objectAtIndex:fromIndexPath.row];
-    [self.companyList removeObjectAtIndex:fromIndexPath.row];
-    [self.companyList insertObject:tempString atIndex:toIndexPath.row];
+    NSString *tempString = [self.data.companyList objectAtIndex:fromIndexPath.row];
+    [self.data.companyList removeObjectAtIndex:fromIndexPath.row];
+    [self.data.companynames removeObjectAtIndex:fromIndexPath.row];
+    [self.data.companyList insertObject:tempString atIndex:toIndexPath.row];
+    [self.data.companynames insertObject:tempString atIndex:toIndexPath.row];
     
 }
 
@@ -136,10 +138,10 @@
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSUInteger appleIndex = [self.companyList indexOfObject:@"Apple mobile devices"];
-     NSUInteger samsungIndex = [self.companyList indexOfObject:@"Samsung mobile devices"];
-     NSUInteger htcIndex = [self.companyList indexOfObject:@"HTC mobile devices"];
-     NSUInteger blackberryIndex = [self.companyList indexOfObject:@"Blackberry mobile devices"];
+    NSUInteger appleIndex = [self.data.companyList indexOfObject:@"Apple mobile devices"];
+     NSUInteger samsungIndex = [self.data.companyList indexOfObject:@"Samsung mobile devices"];
+     NSUInteger htcIndex = [self.data.companyList indexOfObject:@"HTC mobile devices"];
+     NSUInteger blackberryIndex = [self.data.companyList indexOfObject:@"Blackberry mobile devices"];
 
     if (indexPath.row == appleIndex){
         self.productViewController.title = @"Apple mobile devices";
@@ -151,7 +153,8 @@
     }else if(indexPath.row == blackberryIndex) {
         self.productViewController.title = @"Blackberry mobile devices";
     }
-     
+    self.productViewController.currentCompany = [self.data.companyList objectAtIndex:indexPath.row];
+    
     [self.navigationController
         pushViewController:self.productViewController
         animated:YES];

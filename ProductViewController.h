@@ -7,12 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CompanyViewController.h"
+#import "Company.h"
+#import "Product.h"
 
 
 
 @interface ProductViewController : UITableViewController
-@property (nonatomic, retain) NSMutableArray *products;
-@property(nonatomic,strong) NSArray *webSiteArray;
+
+
 @property(nonatomic,strong) UIWebView *webView;
-@property(nonatomic) NSInteger i;
+@property(retain) Company *currentCompany;
+@property(retain) Product *currentProduct;
+@property(nonatomic,strong)UITableViewCell *cell;
+
 @end
