@@ -23,6 +23,7 @@
 @property(retain) Company *currentCompany;
 @property(retain) Dao *data;
 
+@property(nonatomic,strong) UITextField *tickerName;
 
 @property(nonatomic,strong) UITextField *companyNameText;
 @property(nonatomic,strong) UITextField  *companylogoURL;

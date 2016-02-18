@@ -98,6 +98,18 @@
     self.logoThree.autocorrectionType = UITextAutocorrectionTypeNo;
     [self.view addSubview:self.logoThree];
     
+    UILabel *tickerLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 410, 250, 50)];
+    tickerLabel.text = @"Enter Company Ticker Symbol";
+    tickerLabel.backgroundColor = [UIColor purpleColor];
+    [self.view addSubview:tickerLabel];
+    
+
+    self.tickerName = [[UITextField alloc] initWithFrame:CGRectMake(20, 470, 250, 50)];
+    self.tickerName.backgroundColor = [UIColor redColor];
+    self.tickerName.autocorrectionType = UITextAutocorrectionTypeNo;
+    [self.view addSubview:self.tickerName];
+
+    
     if ([self.title  isEqual: @"Add a Company"]) {
     UIButton *createCompanyButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     createCompanyButton.frame = CGRectMake(20, 550, 300, 75);
@@ -127,6 +139,8 @@
         self.logoOne.text = self.currentCompany.productImgArray[0];
         self.logoTwo.text = self.currentCompany.productImgArray[1];
         self.logoThree.text = self.currentCompany.productImgArray[2];
+        
+        self.tickerName.text = self.currentCompany.tickerName;
         
     }
   
@@ -171,6 +185,7 @@
     
     [_data.companynames addObject: self.insertCompany.companyTitle];
     [_data.companyList addObject:self.insertCompany];
+    [_data.tickerNamesArary addObject:self.tickerName.text];
     
 //   CompanyViewController *pushCompanyViewController = [[CompanyViewController alloc]init];
 //    [self.navigationController pushViewController:pushCompanyViewController animated:YES];

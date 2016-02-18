@@ -185,6 +185,7 @@
         addCompanyViewController *editCompany = [[addCompanyViewController alloc] init];
         editCompany.title = @"Edit a Company";
         editCompany.currentCompany = [self.data.companyList objectAtIndex:indexPath.row];
+        [self.data.stockpriceArray removeObjectAtIndex:indexPath.row];
         [self.data.companyList removeObjectAtIndex:indexPath.row];
         [self.data.companynames removeObjectAtIndex:indexPath.row];
         [self.data.imgArray removeObjectAtIndex:indexPath.row];
