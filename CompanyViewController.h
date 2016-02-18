@@ -13,16 +13,10 @@
 @class ProductViewController;
 
 @interface CompanyViewController : UITableViewController
-
-
-
+@property (nonatomic, strong) NSMutableString *tempString;
 @property (nonatomic, retain) IBOutlet  ProductViewController * productViewController;
-
-
-
-@property(nonatomic,strong)UITableViewCell *cell;
-
-
-@property(retain) Dao *data;
+@property (nonatomic, strong)UITableViewCell *cell;
+@property (nonatomic, strong) NSMutableArray *stockArray;
+@property (retain) Dao *data;
 
 @end

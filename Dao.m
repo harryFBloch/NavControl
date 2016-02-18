@@ -28,6 +28,7 @@
     Company *apple = [[Company alloc] init];
     apple.companyTitle = @"Apple mobile devices";
     apple.companyImg = @"http://logok.org/wp-content/uploads/2014/04/Apple-Logo-rainbow.png";
+    apple.tickerName = @"AAPL";
     
     //create apple products
     Product *ipad = [[Product alloc]init];
@@ -53,6 +54,7 @@
     Company *samsung = [[Company alloc] init];
     samsung.companyTitle = @"Samsung mobile devices";
     samsung.companyImg = @"http://files.technobezz.com/files/uploads/2014/06/samsung-boot.jpg";
+    samsung.tickerName = @"SSNLF";
     
     Product *galaxyS6 = [[Product alloc]init];
     galaxyS6.productName = @"Galaxy S6";
@@ -78,6 +80,7 @@
     Company *htc = [[Company alloc] init];
     htc.companyTitle = @"HTC mobile devices";
     htc.companyImg = @"http://www.norebbo.com/wp-content/uploads/2012/02/melt_htc.jpg";
+    htc.tickerName = @"2498.TW";
     
     Product *oneA9 = [[Product alloc]init];
     oneA9.productName = @"ONE A9";
@@ -102,6 +105,7 @@
     Company *blackberry = [[Company alloc]init];
     blackberry.companyTitle =@"Blackberry mobile devices";
     blackberry.companyImg = @"http://siliconangle.com/files/2015/04/blackberry-logo.jpg";
+    blackberry.tickerName = @"BBRY";
     
     Product *classic = [[Product alloc]init];
     classic.productName = @"Classic";
@@ -123,11 +127,15 @@
     blackberry.productImgArray = [NSMutableArray arrayWithObjects:classic.productImg,leap.productImg,z30.productImg, nil];
     blackberry.productObjectArray = [NSMutableArray arrayWithObjects:classic,leap,z30, nil];
     
+    //set DAO properties
     self.companyList = [NSMutableArray arrayWithObjects: apple,samsung,htc,blackberry,nil];
     self.companynames = [NSMutableArray arrayWithObjects: apple.companyTitle,samsung.companyTitle,htc.companyTitle,blackberry.companyTitle,nil];
     
     self.imgArray = [NSMutableArray arrayWithObjects: apple.companyImg,samsung.companyImg,htc.companyImg,blackberry.companyImg,nil];
     self.arrayOfProductArrays = [NSMutableArray arrayWithObjects:apple.productObjectArray,samsung.productObjectArray,htc.productObjectArray,blackberry.productObjectArray, nil];
+    self.tickerNamesArary = [NSMutableArray arrayWithObjects:apple.tickerName,samsung.tickerName,htc.tickerName,blackberry.tickerName,nil];
+        
+        self.stockpriceArray = [[NSMutableArray alloc]init];
 }
 }
 @end

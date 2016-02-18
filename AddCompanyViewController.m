@@ -25,6 +25,7 @@
     
     self.companylogoURL = [[UITextField alloc] initWithFrame:CGRectMake(280, 120, 250, 50)];
     self.companylogoURL.backgroundColor = [UIColor redColor];
+    self.companylogoURL.autocorrectionType = UITextAutocorrectionTypeNo;
     [self.view addSubview:self.companylogoURL];
     
     UILabel *companyLogoLabel = [[UILabel alloc]initWithFrame:CGRectMake(280, 60, 250, 50)];
@@ -34,6 +35,7 @@
     
     self.companyNameText = [[UITextField alloc] initWithFrame:CGRectMake(20, 120, 250, 50)];
     self.companyNameText.backgroundColor = [UIColor redColor];
+    self.companyNameText.autocorrectionType = UITextAutocorrectionTypeNo;
     [self.view addSubview:self.companyNameText];
     
     UILabel *products = [[UILabel alloc]initWithFrame:CGRectMake(20, 175, 250, 50)];
@@ -53,39 +55,49 @@
     
     self.productOne = [[UITextField alloc] initWithFrame:CGRectMake(20, 230, 250, 50)];
     self.productOne.backgroundColor = [UIColor redColor];
+    self.productOne.autocorrectionType = UITextAutocorrectionTypeNo;
     [self.view addSubview:self.productOne];
     
     self.urlOne = [[UITextField alloc] initWithFrame:CGRectMake(280, 230, 200, 50)];
     self.urlOne.backgroundColor = [UIColor redColor];
+    self.urlOne.autocorrectionType = UITextAutocorrectionTypeNo;
     [self.view addSubview:self.urlOne];
     
     self.logoOne = [[UITextField alloc] initWithFrame:CGRectMake(490, 230, 250, 50)];
     self.logoOne.backgroundColor = [UIColor redColor];
+    self.logoOne.autocorrectionType = UITextAutocorrectionTypeNo;
     [self.view addSubview:self.logoOne];
     
    self.productTwo = [[UITextField alloc] initWithFrame:CGRectMake(20, 290, 250, 50)];
     self.productTwo.backgroundColor = [UIColor redColor];
+    self.productTwo.autocorrectionType = UITextAutocorrectionTypeNo;
     [self.view addSubview:self.productTwo];
     
    self.urlTwo = [[UITextField alloc] initWithFrame:CGRectMake(280, 290, 200, 50)];
     self.urlTwo.backgroundColor = [UIColor redColor];
+    self.urlTwo.autocorrectionType = UITextAutocorrectionTypeNo;
     [self.view addSubview:self.urlTwo];
     
    self.logoTwo = [[UITextField alloc] initWithFrame:CGRectMake(490, 290, 250, 50)];
     self.logoTwo.backgroundColor = [UIColor redColor];
+    self.logoTwo.autocorrectionType = UITextAutocorrectionTypeNo;
     [self.view addSubview:self.logoTwo];
     
     self.productThree = [[UITextField alloc] initWithFrame:CGRectMake(20, 350, 250, 50)];
     self.productThree.backgroundColor = [UIColor redColor];
+    self.productThree.autocorrectionType = UITextAutocorrectionTypeNo;
     [self.view addSubview:self.productThree];
     
     self.urlThree = [[UITextField alloc] initWithFrame:CGRectMake(280, 350, 200, 50)];
     self.urlThree.backgroundColor = [UIColor redColor];
+    self.urlThree.autocorrectionType = UITextAutocorrectionTypeNo;
     [self.view addSubview:self.urlThree];
     
     self.logoThree = [[UITextField alloc] initWithFrame:CGRectMake(490, 350, 250, 50)];
     self.logoThree.backgroundColor = [UIColor redColor];
+    self.logoThree.autocorrectionType = UITextAutocorrectionTypeNo;
     [self.view addSubview:self.logoThree];
+    
     if ([self.title  isEqual: @"Add a Company"]) {
     UIButton *createCompanyButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     createCompanyButton.frame = CGRectMake(20, 550, 300, 75);

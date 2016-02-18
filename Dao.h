@@ -14,12 +14,13 @@
 
 
 @property (nonatomic, strong) NSMutableArray *imgArray;
-@property(nonatomic,strong)NSMutableArray *companyList;
-@property(nonatomic,strong)NSMutableArray *companynames;
-@property(nonatomic,strong)NSMutableArray *arrayOfProductArrays;
-
-
+@property (nonatomic, strong) NSMutableArray *companyList;
+@property (nonatomic, strong) NSMutableArray *companynames;
+@property (nonatomic, strong) NSMutableArray *arrayOfProductArrays;
+@property (nonatomic, strong) NSMutableArray *tickerNamesArary;
+@property (nonatomic, strong) NSMutableArray *stockpriceArray;
 
 +(id)sharedManager;
 -(void)createCompanies;
+
 @end

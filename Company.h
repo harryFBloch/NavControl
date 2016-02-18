@@ -14,7 +14,9 @@
 @property(nonatomic,strong) NSString *companyTitle;
 @property(nonatomic,strong) NSString *companyImg;
 @property(nonatomic,strong) NSMutableArray *websiteArray;
-@property(nonatomic,strong)NSMutableArray *productImgArray;
-@property(nonatomic,strong)NSMutableArray *productArray;
+@property(nonatomic,strong) NSMutableArray *productImgArray;
+@property(nonatomic,strong) NSMutableArray *productArray;
+@property(nonatomic,strong) NSString *tickerName;
+@property(nonatomic,strong) NSNumber *stockPrice;
 
 @end

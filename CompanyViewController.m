@@ -54,8 +54,28 @@
      animated:YES];
 }
 -(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.tableView reloadData];
+  self.tempString = [[NSMutableString alloc]init];
+    for (int i=0; i<self.data.companyList.count; i++) {
+        [self.tempString appendString:@"+"];
+        [self.tempString appendString:self.data.tickerNamesArary[i]];
+    }
+    NSString *urlString=[NSString stringWithFormat:@"http://finance.yahoo.com/d/quotes.csv?s=%@&f=a",self.tempString];
+    NSURLSession *session = [NSURLSession sharedSession];
+    [[session dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData *stockData,NSURLResponse *response,NSError *error){
+        NSLog(@"data->%@\t error->%@",stockData,error);
+        NSString *temp = [[NSString alloc] initWithData:stockData encoding:NSUTF8StringEncoding];
+        self.stockArray = (NSMutableArray*)[temp componentsSeparatedByString:@"\n"];
+        for (int i=0; i<self.stockArray.count-1; i++) {
+            [self.data.stockpriceArray addObject:self.stockArray[i]];
+        }
+
+        
+    }]resume];
+        
+        [super viewWillAppear:animated];
+        [self.tableView reloadData];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,16 +105,15 @@
     static NSString *CellIdentifier = @"Cell";
     self.cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (self.cell == nil) {
-        self.cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        self.cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
-    
     // Configure the cell...
 
     self.cell.textLabel.text = [self.data.companynames objectAtIndex:[indexPath row]];
     NSString *tempString = [self.data.imgArray objectAtIndex:indexPath.row];
     NSData *imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:tempString]];
     self.cell.imageView.image =[UIImage imageWithData:imageData];
-    
+    self.cell.detailTextLabel.text = [self.data.stockpriceArray objectAtIndex:indexPath.row];
     
     return self.cell;
 }
