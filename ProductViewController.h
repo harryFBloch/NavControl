@@ -18,7 +18,6 @@
 
 @property(nonatomic,strong) UIWebView *webView;
 @property(retain) Company *currentCompany;
-@property(retain) Product *currentProduct;
 @property(nonatomic,strong)UITableViewCell *cell;
 
 @end

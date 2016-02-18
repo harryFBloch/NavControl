@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Dao.h"
+#import "addCompanyViewController.h"
 
 @class ProductViewController;
 
@@ -16,6 +17,7 @@
 
 
 @property (nonatomic, retain) IBOutlet  ProductViewController * productViewController;
+
 
 
 @property(nonatomic,strong)UITableViewCell *cell;

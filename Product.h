@@ -12,6 +12,6 @@
 
 @property(nonatomic,strong)NSString *productName;
 @property(nonatomic,strong)NSString *productURL;
-@property(nonatomic,strong)NSArray *productArray;
 @property(nonatomic,strong)NSString *productImg;
+
 @end

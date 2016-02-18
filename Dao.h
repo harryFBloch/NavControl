@@ -16,6 +16,10 @@
 @property (nonatomic, strong) NSMutableArray *imgArray;
 @property(nonatomic,strong)NSMutableArray *companyList;
 @property(nonatomic,strong)NSMutableArray *companynames;
+@property(nonatomic,strong)NSMutableArray *arrayOfProductArrays;
 
+
+
++(id)sharedManager;
 -(void)createCompanies;
 @end

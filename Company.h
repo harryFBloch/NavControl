@@ -15,4 +15,6 @@
 @property(nonatomic,strong) NSString *companyImg;
 @property(nonatomic,strong) NSMutableArray *websiteArray;
 @property(nonatomic,strong)NSMutableArray *productImgArray;
+@property(nonatomic,strong)NSMutableArray *productArray;
+
 @end

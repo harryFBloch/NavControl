@@ -25,6 +25,7 @@
 		48A656EE1816468000746D36 /* Sunflower.gif in Resources */ = {isa = PBXBuildFile; fileRef = 48A656ED1816468000746D36 /* Sunflower.gif */; };
 		4A76488B1C6E87CB00D086CF /* Dao.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A76488A1C6E87CB00D086CF /* Dao.m */; };
 		4A7648A11C73AE8B00D086CF /* pics in Resources */ = {isa = PBXBuildFile; fileRef = 4A7648A01C73AE8B00D086CF /* pics */; };
+		4A7648A71C73CC9500D086CF /* addCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7648A61C73CC9500D086CF /* addCompanyViewController.m */; };
 		4AAB1C2C1C6D2991002C3DE9 /* samsung-logo.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB1C2B1C6D2991002C3DE9 /* samsung-logo.jpeg */; };
 		4AAB1C301C6D299C002C3DE9 /* Blackberry_Logo_without_wordmark.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB1C2D1C6D299C002C3DE9 /* Blackberry_Logo_without_wordmark.svg.png */; };
 		4AAB1C311C6D299C002C3DE9 /* HTC.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB1C2E1C6D299C002C3DE9 /* HTC.jpeg */; };
@@ -71,6 +72,8 @@
 		4A7648891C6E87CB00D086CF /* Dao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dao.h; sourceTree = "<group>"; };
 		4A76488A1C6E87CB00D086CF /* Dao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dao.m; sourceTree = "<group>"; };
 		4A7648A01C73AE8B00D086CF /* pics */ = {isa = PBXFileReference; lastKnownFileType = folder; path = pics; sourceTree = "<group>"; };
+		4A7648A51C73CC9500D086CF /* addCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = addCompanyViewController.h; path = ../addCompanyViewController.h; sourceTree = "<group>"; };
+		4A7648A61C73CC9500D086CF /* addCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = addCompanyViewController.m; path = ../addCompanyViewController.m; sourceTree = "<group>"; };
 		4AAB1C2B1C6D2991002C3DE9 /* samsung-logo.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "samsung-logo.jpeg"; sourceTree = "<group>"; };
 		4AAB1C2D1C6D299C002C3DE9 /* Blackberry_Logo_without_wordmark.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blackberry_Logo_without_wordmark.svg.png; sourceTree = "<group>"; };
 		4AAB1C2E1C6D299C002C3DE9 /* HTC.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = HTC.jpeg; sourceTree = "<group>"; };
@@ -136,6 +139,8 @@
 				48A656E918163F8700746D36 /* ProductViewController.m */,
 				4AAB1C391C6E3AA3002C3DE9 /* WebSitViewController.h */,
 				4AAB1C3A1C6E3AA3002C3DE9 /* WebSitViewController.m */,
+				4A7648A51C73CC9500D086CF /* addCompanyViewController.h */,
+				4A7648A61C73CC9500D086CF /* addCompanyViewController.m */,
 			);
 			name = ProductViewController;
 			path = NavCtrl;
@@ -363,6 +368,7 @@
 			files = (
 				4AAB1C431C6E66B1002C3DE9 /* Product.m in Sources */,
 				48A656E618163C1B00746D36 /* CompanyViewController.m in Sources */,
+				4A7648A71C73CC9500D086CF /* addCompanyViewController.m in Sources */,
 				4AAB1C401C6E669F002C3DE9 /* Company.m in Sources */,
 				48A656C518163BF200746D36 /* NavControllerAppDelegate.m in Sources */,
 				4A76488B1C6E87CB00D086CF /* Dao.m in Sources */,
