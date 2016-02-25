@@ -37,14 +37,18 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    
-    self.data = [Dao sharedManager];
-    [self.data createCompanies];
+
    
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addRow:)];
     self.navigationItem.leftBarButtonItem = addButton ;
     
+
+    self.data = [[Dao alloc]init];
+    [self.data openDB];
+    [self.data countRows];
+    [self.data databaseInfo];
+
+
     }
 -(void)addRow:sender{
     addCompanyViewController *add = [[addCompanyViewController alloc]init];
@@ -90,11 +94,16 @@
     
     // Configure the cell...
 
+
     self.cell.textLabel.text = [self.data.companynames objectAtIndex:[indexPath row]];
     NSString *tempString = [self.data.imgArray objectAtIndex:indexPath.row];
     NSData *imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:tempString]];
     self.cell.imageView.image =[UIImage imageWithData:imageData];
     
+
+    self.cell.textLabel.text = [self.data.companynames objectAtIndex:indexPath.row];
+    self.cell.imageView.image =[UIImage imageNamed:[self.data.imgArray objectAtIndex:indexPath.row]];
+
     
     return self.cell;
 }
@@ -119,6 +128,8 @@
    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        NSString *temp = [[NSString alloc ]initWithString: [self.data.companynames objectAtIndex:indexPath.row]];
+        [self.data deleteFromDBCompany:temp];
         [self.data.companyList removeObjectAtIndex:indexPath.row];
         [self.data.companynames removeObjectAtIndex:indexPath.row];
         [self.data.imgArray removeObjectAtIndex:indexPath.row];

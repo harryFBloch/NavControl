@@ -18,6 +18,9 @@
 
 @property(nonatomic,strong) UIWebView *webView;
 @property(retain) Company *currentCompany;
+@property(retain) Product *currentProduct;
+@property(retain) Dao *data;
+
 @property(nonatomic,strong)UITableViewCell *cell;
 
 @end

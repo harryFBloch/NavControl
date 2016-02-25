@@ -130,6 +130,236 @@
     self.arrayOfProductArrays = [NSMutableArray arrayWithObjects:apple.productObjectArray,samsung.productObjectArray,htc.productObjectArray,blackberry.productObjectArray, nil];
 }
 }
+
+-(void)openDB{
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"navDB" ofType:@"db"];
+    NSError *error;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSString *documentDBFolderPath = [documentsDirectory stringByAppendingString:@"/navDB.db"];
+    self.dbPathString = documentDBFolderPath;
+    if (![fileManager fileExistsAtPath:self.dbPathString]) {
+        [fileManager copyItemAtPath:filePath toPath:self.dbPathString error:&error];
+        NSLog(@"ERROR->%@",[error localizedDescription]);
+    }
+}
+
+-(void)databaseInfo{
+    sqlite3_stmt *statement;
+    self.companyList = [[NSMutableArray alloc]init];
+    self.companynames = [[NSMutableArray alloc]init];
+    self.imgArray = [[NSMutableArray alloc]init];
+    self.productObjectArrayTemp = [[NSMutableArray alloc] init];
+    self.productIDArray = [[NSMutableArray alloc] init];
+    self.tempCompanyList = [[NSMutableArray alloc] init];
+    NSInteger tempINT = 0;
+    NSUInteger i = 0;
+    NSUInteger k = 0;
+  
+    
+    
+    
+    sqlite3_stmt *statement2;
+    
+    if (sqlite3_open([self.dbPathString  UTF8String], &_personDB2) == SQLITE_OK) {
+        NSString *querySQLTwo = [NSString stringWithFormat:@"SELECT * FROM Product"];
+        const char *query_sqlTwo = [querySQLTwo UTF8String];
+        NSLog(@"%d",sqlite3_prepare(_personDB2, query_sqlTwo, -1, &statement2, NULL)== SQLITE_OK);
+        if (sqlite3_prepare(_personDB2, query_sqlTwo, -1, &statement2, NULL)== SQLITE_OK) {
+            while (sqlite3_step(statement2) == SQLITE_ROW) {
+                
+                k=sqlite3_column_count(statement2)-2;
+                
+                NSString *name = [[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(statement2, 1)];
+                NSString *productLogoURL =[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(statement2, 2)];
+                NSString *productURL = [[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(statement2, 3)];
+                NSString *productID = [[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(statement2, 4)];
+                Product *product = [[Product alloc]init];
+                product.productName = name ;
+                product.productURL = productURL;
+                product.productImg = productLogoURL;
+                product.companyID = [productID integerValue];
+                NSNumber *number = [NSNumber numberWithInt:product.companyID];
+               
+                [self.productIDArray addObject:number];
+                [self.productObjectArrayTemp addObject:product];
+             
+               
+                
+            }
+        }
+        
+        sqlite3_finalize(statement2);
+        sqlite3_close(_personDB2);
+    }
+    if (sqlite3_open([self.dbPathString  UTF8String], &_personDB) == SQLITE_OK) {
+        NSString *querySQL = [NSString stringWithFormat:@"SELECT * FROM Company"];
+        
+        
+        const char *query_sql = [querySQL UTF8String];
+        
+        NSLog(@"TEST->%d",sqlite3_prepare_v2(_personDB, query_sql, -1, &statement, NULL));
+        if (sqlite3_prepare_v2(_personDB, query_sql, -1, &statement, NULL) == SQLITE_OK){
+            while (sqlite3_step(statement) == SQLITE_ROW) {
+                
+                NSString *companyLogoURL = [[NSString alloc] initWithUTF8String:(const char *)sqlite3_column_text(statement, 2)];
+                NSString *companyTitle =[[NSString alloc] initWithUTF8String:(const char *)sqlite3_column_text(statement, 3)];
+                NSString *companyID = [[NSString alloc] initWithUTF8String:(const char *)sqlite3_column_text(statement, 0)];
+                NSString *companyName = [[NSString alloc] initWithUTF8String:(const char *)sqlite3_column_text(statement, 1)];
+                NSString *companyIndex = [[NSString alloc] initWithUTF8String:(const char*)sqlite3_column_text(statement, 4)];
+                NSString *companyPK = [[NSString alloc] initWithUTF8String:(const char*)sqlite3_column_text(statement, 0)];
+                self.company = [[Company alloc]init];
+                self.company.index = [companyIndex integerValue];
+                self.company.companyImg = [[NSString alloc]init];
+                self.company.companyImg = companyLogoURL;
+                self.company.Pk = [companyPK integerValue];
+                self.company.companyTitle = [[NSString alloc]init];
+                self.company.companyTitle = companyTitle;
+                self.company.ID = [companyID integerValue];
+                self.company.companyName = [[NSString alloc]init];
+                self.company.companyName = companyName;
+                self.company.productObjectArray = [[NSMutableArray alloc]init];
+                self.company.productNameArray = [[NSMutableArray alloc]init];
+                self.company.websiteArray = [[NSMutableArray alloc]init];
+                self.company.productImgArray = [[NSMutableArray alloc]init];
+                for (i=0; i<self.productObjectArrayTemp.count; i++) {
+                    Product *tempProduct = [[Product alloc] init];
+                    tempProduct = self.productObjectArrayTemp[i];
+                    if (tempProduct.companyID == self.company.Pk) {
+                        [self.company.productObjectArray addObject: tempProduct];
+                        [self.company.websiteArray addObject:tempProduct.productURL];
+                        [self.company.productImgArray addObject:tempProduct.productImg];
+                        [self.company.productNameArray addObject:tempProduct.productName];
+                    }
+                    
+                }
+                [self.tempCompanyList addObject:self.company];
+                tempINT ++;
+                if (tempINT==self.max) {
+                    for (int z = 0; z<self.max ; z++) {
+                        [self.companyList addObject:@""];
+                        [self.companynames addObject:@""];
+                        [self.imgArray addObject:@""];
+                    }
+                    for (int z = 0; z<self.max ; z++) {
+                        self.company = [[Company alloc]init];
+                        self.company = self.tempCompanyList[z];
+                        for (int b = 0; b<self.max; b++) {
+                            self.company2 = [[Company alloc] init];
+                            if (self.company.ID>self.company2.ID) {
+                                [self.companyList replaceObjectAtIndex:z withObject:self.company];
+                                [self.companynames replaceObjectAtIndex:z withObject:self.company.companyTitle];
+                                [self.imgArray replaceObjectAtIndex:z withObject:self.company.companyImg];
+                            }else if (self.company.ID < self.company2.ID){
+                                [self.companyList replaceObjectAtIndex:(z-1) withObject:self.company];
+                                [self.companynames replaceObjectAtIndex:(z-1) withObject:self.company.companyTitle];
+                                [self.imgArray replaceObjectAtIndex:(z-1) withObject:self.company.companyImg];
+                            }
+                            
+                            }
+                        }
+                        
+                    
+                    
+                  
+                }
+            }
+        }
+        sqlite3_finalize(statement);
+        sqlite3_close(_personDB);
+    }
+    
+    
+}
+
+
+-(void)deleteFromDBCompany:(NSString*)query{
+    
+    sqlite3_stmt *statement3;
+    NSString * tempstring1 = [NSString stringWithFormat:@"DELETE FROM Company WHERE company_Title ='%@'",query];
+    if (sqlite3_open([self.dbPathString  UTF8String], &_deleteCompany) == SQLITE_OK) {
+        NSLog(@"%s",sqlite3_errmsg(_deleteCompany));
+        const char *query_sqlTwo = [tempstring1 UTF8String];
+        
+        NSLog(@"%d",sqlite3_prepare(_deleteCompany, query_sqlTwo, -1, &statement3, NULL)== SQLITE_OK);
+        if (sqlite3_prepare(_deleteCompany, query_sqlTwo, -1, &statement3, NULL)== SQLITE_OK) {
+            
+            NSLog(@"Item Deleted");
+            
+        }
+        if (sqlite3_step(statement3)==SQLITE_DONE) {
+            
+            NSLog(@"%s",sqlite3_errmsg(_deleteCompany));
+            sqlite3_finalize(statement3);
+        }
+        
+        sqlite3_close(_deleteCompany);
+        NSLog(@"%s",sqlite3_errmsg(_deleteCompany));
+        
+    }
+    
+}
+-(void)deleteFromDBProduct:(NSString*)query{
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *documentDBFolderPath = [documentsDirectory stringByAppendingString:@"/navDB.db"];
+    self.dbPathString = documentDBFolderPath;
+
+    
+    sqlite3_stmt *statement4;
+    NSString * tempstring1 = [NSString stringWithFormat:@"DELETE FROM Product WHERE name ='%@'",query];
+    if (sqlite3_open([self.dbPathString  UTF8String], &_deleteProduct) == SQLITE_OK) {
+        NSLog(@"%s",sqlite3_errmsg(_deleteProduct));
+        const char *query_sqlTwo = [tempstring1 UTF8String];
+        
+        NSLog(@"%d",sqlite3_prepare(_deleteProduct, query_sqlTwo, -1, &statement4, NULL)== SQLITE_OK);
+        if (sqlite3_prepare(_deleteProduct, query_sqlTwo, -1, &statement4, NULL)== SQLITE_OK) {
+            
+            NSLog(@"Item Deleted");
+            
+        }
+        if (sqlite3_step(statement4)==SQLITE_DONE) {
+            
+            NSLog(@"%s",sqlite3_errmsg(_deleteProduct));
+            sqlite3_finalize(statement4);
+        }
+        
+        sqlite3_close(_deleteProduct);
+        NSLog(@"%s",sqlite3_errmsg(_deleteProduct));
+        
+    }
+    
+ 
+}
+-(void)countRows{
+      sqlite3_stmt *statement3;
+      
+    NSString * tempstring1 = @"SELECT * FROM Company";
+    NSInteger counter = 0;
+    if (sqlite3_open([self.dbPathString  UTF8String], &_countDB) == SQLITE_OK) {
+        const char *query_sqlTwo = [tempstring1 UTF8String];
+        NSLog(@"%d",sqlite3_prepare(_countDB, query_sqlTwo, -1, &statement3, NULL)== SQLITE_OK);
+        if (sqlite3_prepare(_countDB, query_sqlTwo, -1, &statement3, NULL)== SQLITE_OK) {
+            while (sqlite3_step(statement3) == SQLITE_ROW) {
+                counter++;
+                self.max=counter;
+            }
+
+            if (sqlite3_step(statement3)==SQLITE_DONE) {
+            
+            sqlite3_finalize(statement3);
+        }
+       
+        sqlite3_close(_countDB);
+      
+    }
+}
+}
+
 @end
 
 

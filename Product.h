@@ -13,5 +13,7 @@
 @property(nonatomic,strong)NSString *productName;
 @property(nonatomic,strong)NSString *productURL;
 @property(nonatomic,strong)NSString *productImg;
+@property(nonatomic) NSInteger companyID;
+
 
 @end

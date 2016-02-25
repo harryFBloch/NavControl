@@ -38,9 +38,10 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-  
-   
-   
+
+     self.data = [[Dao alloc]init];
+    self.title = @"Mobile device makers";
+
    
 }
 
@@ -84,11 +85,16 @@
         self.cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     // Configure the cell...
+
     self.cell.textLabel.text = [self.currentCompany.productArray objectAtIndex:[indexPath row]];
     NSString *tempString = [self.currentCompany.productImgArray objectAtIndex:indexPath.row];
     NSData *imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:tempString]];
     self.cell.imageView.image =[UIImage imageWithData:imageData];
     self.title = self.currentCompany.companyTitle;
+
+    self.cell.textLabel.text = [self.currentCompany.productNameArray objectAtIndex:[indexPath row]];
+    self.cell.imageView.image =[UIImage imageWithContentsOfFile:[self.currentCompany.productImgArray objectAtIndex:indexPath.row]];
+
     return self.cell;
 }
 
@@ -107,6 +113,8 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        NSString *temp = [[NSString alloc ]initWithString: [self.currentCompany.productNameArray objectAtIndex:indexPath.row]];
+        [self.data deleteFromDBProduct:temp];
         [self.currentCompany.productObjectArray removeObjectAtIndex:indexPath.row];
         [self.currentCompany.productImgArray removeObjectAtIndex:indexPath.row];
         [self.currentCompany.websiteArray removeObjectAtIndex:indexPath.row];

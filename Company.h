@@ -16,5 +16,10 @@
 @property(nonatomic,strong) NSMutableArray *websiteArray;
 @property(nonatomic,strong)NSMutableArray *productImgArray;
 @property(nonatomic,strong)NSMutableArray *productArray;
+@property(nonatomic,strong) NSString *companyName;
+@property(nonatomic) NSInteger index;
+@property(nonatomic) NSInteger ID;
+@property(nonatomic) NSInteger Pk;
+@property(nonatomic,strong) NSMutableArray *productNameArray;
 
 @end
