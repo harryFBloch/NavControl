@@ -38,8 +38,9 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.data = [[Dao alloc]init];
-    [self.data createCompanies];
-    
+    [self.data openDB];
+    [self.data countRows];
+    [self.data databaseInfo];
 
     }
 
@@ -75,8 +76,7 @@
     }
     
     // Configure the cell...
-    
-    self.cell.textLabel.text = [self.data.companynames objectAtIndex:[indexPath row]];
+    self.cell.textLabel.text = [self.data.companynames objectAtIndex:indexPath.row];
     self.cell.imageView.image =[UIImage imageNamed:[self.data.imgArray objectAtIndex:indexPath.row]];
     
     return self.cell;
@@ -97,6 +97,8 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        NSString *temp = [[NSString alloc ]initWithString: [self.data.companynames objectAtIndex:indexPath.row]];
+        [self.data deleteFromDBCompany:temp];
         [self.data.companyList removeObjectAtIndex:indexPath.row];
         [self.data.companynames removeObjectAtIndex:indexPath.row];
         [self.data.imgArray removeObjectAtIndex:indexPath.row];

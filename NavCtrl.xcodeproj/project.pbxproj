@@ -23,6 +23,8 @@
 		48A656E718163C1B00746D36 /* CompanyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48A656E518163C1B00746D36 /* CompanyViewController.xib */; };
 		48A656EB18163F8700746D36 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A656E918163F8700746D36 /* ProductViewController.m */; };
 		48A656EE1816468000746D36 /* Sunflower.gif in Resources */ = {isa = PBXBuildFile; fileRef = 48A656ED1816468000746D36 /* Sunflower.gif */; };
+		4A3B37C11C7F654B008CA340 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A3B37C01C7F654B008CA340 /* libsqlite3.tbd */; };
+		4A3B37C31C7F6A7B008CA340 /* navDB.db in Resources */ = {isa = PBXBuildFile; fileRef = 4A3B37C21C7F675B008CA340 /* navDB.db */; };
 		4A76488B1C6E87CB00D086CF /* Dao.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A76488A1C6E87CB00D086CF /* Dao.m */; };
 		4A7648A11C73AE8B00D086CF /* pics in Resources */ = {isa = PBXBuildFile; fileRef = 4A7648A01C73AE8B00D086CF /* pics */; };
 		4AAB1C2C1C6D2991002C3DE9 /* samsung-logo.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB1C2B1C6D2991002C3DE9 /* samsung-logo.jpeg */; };
@@ -68,6 +70,8 @@
 		48A656E818163F8700746D36 /* ProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductViewController.h; path = ../ProductViewController.h; sourceTree = "<group>"; };
 		48A656E918163F8700746D36 /* ProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductViewController.m; path = ../ProductViewController.m; sourceTree = "<group>"; };
 		48A656ED1816468000746D36 /* Sunflower.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Sunflower.gif; sourceTree = "<group>"; };
+		4A3B37C01C7F654B008CA340 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		4A3B37C21C7F675B008CA340 /* navDB.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = navDB.db; sourceTree = "<group>"; };
 		4A7648891C6E87CB00D086CF /* Dao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dao.h; sourceTree = "<group>"; };
 		4A76488A1C6E87CB00D086CF /* Dao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dao.m; sourceTree = "<group>"; };
 		4A7648A01C73AE8B00D086CF /* pics */ = {isa = PBXFileReference; lastKnownFileType = folder; path = pics; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A3B37C11C7F654B008CA340 /* libsqlite3.tbd in Frameworks */,
 				4AAB1C3D1C6E493A002C3DE9 /* WebKit.framework in Frameworks */,
 				48A656B718163BF200746D36 /* CoreGraphics.framework in Frameworks */,
 				48A656B918163BF200746D36 /* UIKit.framework in Frameworks */,
@@ -147,6 +152,7 @@
 				4A7648861C6E872E00D086CF /* Model */,
 				4AAB1C3E1C6E669F002C3DE9 /* Company.h */,
 				4AAB1C3F1C6E669F002C3DE9 /* Company.m */,
+				4A3B37C21C7F675B008CA340 /* navDB.db */,
 				4A7648871C6E873500D086CF /* View */,
 				4AAB1C2B1C6D2991002C3DE9 /* samsung-logo.jpeg */,
 				4A7648A01C73AE8B00D086CF /* pics */,
@@ -172,6 +178,7 @@
 		48A656B318163BF200746D36 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A3B37C01C7F654B008CA340 /* libsqlite3.tbd */,
 				4AAB1C3C1C6E493A002C3DE9 /* WebKit.framework */,
 				48A656B418163BF200746D36 /* Foundation.framework */,
 				48A656B618163BF200746D36 /* CoreGraphics.framework */,
@@ -334,6 +341,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A3B37C31C7F6A7B008CA340 /* navDB.db in Resources */,
 				4A7648A11C73AE8B00D086CF /* pics in Resources */,
 				48A656EE1816468000746D36 /* Sunflower.gif in Resources */,
 				48A656E718163C1B00746D36 /* CompanyViewController.xib in Resources */,
