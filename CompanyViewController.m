@@ -43,10 +43,6 @@
     self.navigationItem.leftBarButtonItem = addButton ;
     
 
-    self.data = [[Dao alloc]init];
-    [self.data openDB];
-    [self.data countRows];
-    [self.data databaseInfo];
 
 
     }
@@ -59,6 +55,11 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.data = [Dao sharedManager];
+    [self.data openDB];
+    [self.data countRows];
+    [self.data databaseInfo];
+
     [self.tableView reloadData];
 }
 
@@ -153,6 +154,7 @@
     [self.data.companynames removeObjectAtIndex:fromIndexPath.row];
     [self.data.companyList insertObject:tempString atIndex:toIndexPath.row];
     [self.data.companynames insertObject:tempString atIndex:toIndexPath.row];
+    [self.data reArrange];
     
 }
 

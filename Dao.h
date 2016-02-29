@@ -39,7 +39,9 @@
 @property (nonatomic,strong) NSMutableArray *productIDArray;
 @property (nonatomic,strong) NSMutableArray *tempCompanyList;
 @property (nonatomic) NSInteger max;
-
+@property (nonatomic) NSInteger productMax;
+@property (nonatomic) NSInteger tempINT;
+@property (nonatomic) NSInteger counter;
 
 
 
@@ -54,5 +56,11 @@
 -(void)deleteFromDBCompany:(NSString*)query;
 -(void)deleteFromDBProduct:(NSString*)query;
 -(void)countRows;
+-(void)sqlPers:(NSString*)query;
+-(void)reArrange;
+-(void)productReArrange:(Company*)company;
+-(NSInteger)countProductRows:(NSString*)query;
+-(void)manageADDForum:(Company *)newCompany;
+-(void)manageEditForum:(Company *)editedCompany;
 
 @end

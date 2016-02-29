@@ -22,6 +22,7 @@
 @property(retain) Company *insertCompany;
 @property(retain) Company *currentCompany;
 @property(retain) Dao *data;
+@property(nonatomic) NSInteger tempInt;
 
 
 @property(nonatomic,strong) UITextField *companyNameText;

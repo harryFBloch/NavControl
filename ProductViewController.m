@@ -39,7 +39,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
-     self.data = [[Dao alloc]init];
+     
     self.title = @"Mobile device makers";
 
    
@@ -48,9 +48,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-
-        
-
     [self.tableView reloadData];
 }
 
@@ -134,11 +131,14 @@
 {
     NSString *tempstring = [self.currentCompany.websiteArray objectAtIndex:fromIndexPath.row];
     NSString *imgTemp = [self.currentCompany.productImgArray objectAtIndex:fromIndexPath.row];
+     NSString *nameTemp = [self.currentCompany.productNameArray objectAtIndex:fromIndexPath.row];
     [self.currentCompany.websiteArray removeObjectAtIndex:fromIndexPath.row];
     [self.currentCompany.websiteArray insertObject:tempstring atIndex:toIndexPath.row];
     [self.currentCompany.productImgArray removeObjectAtIndex:fromIndexPath.row];
     [self.currentCompany.productImgArray insertObject:imgTemp atIndex:toIndexPath.row];
-
+    [self.currentCompany.productNameArray removeObjectAtIndex:fromIndexPath.row];
+    [self.currentCompany.productNameArray insertObject:nameTemp atIndex:toIndexPath.row];
+    [self.data productReArrange:self.currentCompany];
 }
 
 

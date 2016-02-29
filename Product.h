@@ -14,6 +14,8 @@
 @property(nonatomic,strong)NSString *productURL;
 @property(nonatomic,strong)NSString *productImg;
 @property(nonatomic) NSInteger companyID;
+@property(nonatomic) NSInteger index;
+@property(nonatomic) NSInteger PK;
 
 
 @end

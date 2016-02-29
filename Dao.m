@@ -158,6 +158,8 @@
     NSInteger tempINT = 0;
     NSUInteger i = 0;
     NSUInteger k = 0;
+    NSUInteger b = 0;
+    NSUInteger productRows = 0;
   
     
     
@@ -172,24 +174,31 @@
             while (sqlite3_step(statement2) == SQLITE_ROW) {
                 
                 k=sqlite3_column_count(statement2)-2;
-                
+                b++;
                 NSString *name = [[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(statement2, 1)];
                 NSString *productLogoURL =[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(statement2, 2)];
                 NSString *productURL = [[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(statement2, 3)];
                 NSString *productID = [[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(statement2, 4)];
+                NSString *productIndexTEmp = [[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(statement2, 5)];
+                NSString *tempProductPK= [[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(statement2, 0)];
+                
                 Product *product = [[Product alloc]init];
                 product.productName = name ;
                 product.productURL = productURL;
                 product.productImg = productLogoURL;
                 product.companyID = [productID integerValue];
+                product.index = [productIndexTEmp integerValue];
+                product.PK = [tempProductPK integerValue];
                 NSNumber *number = [NSNumber numberWithInt:product.companyID];
                
+                
                 [self.productIDArray addObject:number];
                 [self.productObjectArrayTemp addObject:product];
              
                
                 
             }
+            
         }
         
         sqlite3_finalize(statement2);
@@ -207,10 +216,10 @@
                 
                 NSString *companyLogoURL = [[NSString alloc] initWithUTF8String:(const char *)sqlite3_column_text(statement, 2)];
                 NSString *companyTitle =[[NSString alloc] initWithUTF8String:(const char *)sqlite3_column_text(statement, 3)];
-                NSString *companyID = [[NSString alloc] initWithUTF8String:(const char *)sqlite3_column_text(statement, 0)];
                 NSString *companyName = [[NSString alloc] initWithUTF8String:(const char *)sqlite3_column_text(statement, 1)];
                 NSString *companyIndex = [[NSString alloc] initWithUTF8String:(const char*)sqlite3_column_text(statement, 4)];
                 NSString *companyPK = [[NSString alloc] initWithUTF8String:(const char*)sqlite3_column_text(statement, 0)];
+                
                 self.company = [[Company alloc]init];
                 self.company.index = [companyIndex integerValue];
                 self.company.companyImg = [[NSString alloc]init];
@@ -218,53 +227,50 @@
                 self.company.Pk = [companyPK integerValue];
                 self.company.companyTitle = [[NSString alloc]init];
                 self.company.companyTitle = companyTitle;
-                self.company.ID = [companyID integerValue];
+                self.company.ID = [companyIndex integerValue];
                 self.company.companyName = [[NSString alloc]init];
                 self.company.companyName = companyName;
                 self.company.productObjectArray = [[NSMutableArray alloc]init];
                 self.company.productNameArray = [[NSMutableArray alloc]init];
                 self.company.websiteArray = [[NSMutableArray alloc]init];
                 self.company.productImgArray = [[NSMutableArray alloc]init];
+               
+                NSString *tempString = [NSString stringWithFormat:@"SELECT * FROM Product WHERE Company_ID = '%ld'",(long)self.company.Pk];
+                productRows = [self countProductRows:tempString];
+                for (int i=0; i<productRows; i++) {
+                    [self.company.productObjectArray addObject: @""];
+                    [self.company.websiteArray addObject:@""];
+                    [self.company.productImgArray addObject:@""];
+                    [self.company.productNameArray addObject:@""];
+                }
+                
                 for (i=0; i<self.productObjectArrayTemp.count; i++) {
                     Product *tempProduct = [[Product alloc] init];
                     tempProduct = self.productObjectArrayTemp[i];
                     if (tempProduct.companyID == self.company.Pk) {
-                        [self.company.productObjectArray addObject: tempProduct];
-                        [self.company.websiteArray addObject:tempProduct.productURL];
-                        [self.company.productImgArray addObject:tempProduct.productImg];
-                        [self.company.productNameArray addObject:tempProduct.productName];
+                        [self.company.productObjectArray replaceObjectAtIndex:tempProduct.index withObject:tempProduct];
+                        [self.company.websiteArray replaceObjectAtIndex:tempProduct.index withObject:tempProduct.productURL];
+                        [self.company.productImgArray replaceObjectAtIndex:tempProduct.index withObject:tempProduct.productImg];
+                        [self.company.productNameArray replaceObjectAtIndex:tempProduct.index withObject:tempProduct.productName];
                     }
                     
                 }
                 [self.tempCompanyList addObject:self.company];
                 tempINT ++;
                 if (tempINT==self.max) {
-                    for (int z = 0; z<self.max ; z++) {
+                    for (int z = 0; z<=(self.max -1); z++) {
                         [self.companyList addObject:@""];
                         [self.companynames addObject:@""];
                         [self.imgArray addObject:@""];
                     }
-                    for (int z = 0; z<self.max ; z++) {
+                    for (int z = 0; z < self.max ; z++) {
                         self.company = [[Company alloc]init];
                         self.company = self.tempCompanyList[z];
-                        for (int b = 0; b<self.max; b++) {
-                            self.company2 = [[Company alloc] init];
-                            if (self.company.ID>self.company2.ID) {
-                                [self.companyList replaceObjectAtIndex:z withObject:self.company];
-                                [self.companynames replaceObjectAtIndex:z withObject:self.company.companyTitle];
-                                [self.imgArray replaceObjectAtIndex:z withObject:self.company.companyImg];
-                            }else if (self.company.ID < self.company2.ID){
-                                [self.companyList replaceObjectAtIndex:(z-1) withObject:self.company];
-                                [self.companynames replaceObjectAtIndex:(z-1) withObject:self.company.companyTitle];
-                                [self.imgArray replaceObjectAtIndex:(z-1) withObject:self.company.companyImg];
-                            }
-                            
-                            }
-                        }
                         
-                    
-                    
-                  
+                        [self.companyList replaceObjectAtIndex:self.company.ID withObject:self.company];
+                        [self.companynames replaceObjectAtIndex:self.company.ID  withObject:self.company.companyTitle];
+                        [self.imgArray replaceObjectAtIndex:self.company.ID  withObject:self.company.companyImg];
+                            }
                 }
             }
         }
@@ -359,6 +365,114 @@
     }
 }
 }
+
+-(void)sqlPers:(NSString*)query{
+    
+    if (!self.dbPathString) {
+        
+   
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *documentDBFolderPath = [documentsDirectory stringByAppendingString:@"/navDB.db"];
+    self.dbPathString = documentDBFolderPath;
+    }
+    
+    sqlite3_stmt *statement4;
+    NSString * tempstring1 = query;
+    if (sqlite3_open([self.dbPathString  UTF8String], &_deleteProduct) == SQLITE_OK) {
+        
+        const char *query_sqlTwo = [tempstring1 UTF8String];
+        
+        
+        if (sqlite3_prepare(_deleteProduct, query_sqlTwo, -1, &statement4, NULL)== SQLITE_OK) {
+            
+            NSLog(@"Item changed");
+            
+        }
+        if (sqlite3_step(statement4)==SQLITE_DONE) {
+            
+           
+            sqlite3_finalize(statement4);
+        }
+        
+        sqlite3_close(_deleteProduct);
+    
+        
+    }
+    
+}
+
+-(void)reArrange{
+    while (self.tempINT<self.companyList.count) {
+        Company *temp = [[Company alloc] init];
+        temp = self.companyList[self.tempINT];
+        temp.ID = self.tempINT;
+        NSString *indexTempString = [[NSString alloc]initWithFormat:@"UPDATE Company SET 'index' = '%ld' WHERE  name = '%@'",(long)temp.ID,temp.companyName];
+        self.tempINT++;
+        [self sqlPers:indexTempString];
+        
+    }
+    
+    
+}
+
+-(void)productReArrange:(Company *)company{
+    for (int i=0; i<company.productObjectArray.count; i++) {
+        NSString *tempString = [NSString stringWithFormat:@"UPDATE Product SET 'index' = %d WHERE name = '%@'",i,[company.productNameArray objectAtIndex:i]];
+        [self sqlPers:tempString];
+    }
+ 
+}
+-(NSInteger)countProductRows:(NSString*)query{
+    sqlite3_stmt *statement3;
+    
+    NSString * tempstring1 = query;
+    NSInteger counter = 0;
+    if (sqlite3_open([self.dbPathString  UTF8String], &_countDB) == SQLITE_OK) {
+        const char *query_sqlTwo = [tempstring1 UTF8String];
+//        NSLog(@"%d",sqlite3_prepare(_countDB, query_sqlTwo, -1, &statement3, NULL)== SQLITE_OK);
+        if (sqlite3_prepare(_countDB, query_sqlTwo, -1, &statement3, NULL)== SQLITE_OK) {
+            while (sqlite3_step(statement3) == SQLITE_ROW) {
+                counter++;
+                self.productMax=counter;
+            }
+            
+            if (sqlite3_step(statement3)==SQLITE_DONE) {
+                
+                sqlite3_finalize(statement3);
+            }
+            
+            sqlite3_close(_countDB);
+            
+        }
+    }
+    return self.productMax;
+}
+
+-(void)manageADDForum:(Company *)newCompany{
+     NSString *tempCompanySQL = [NSString stringWithFormat:@"INSERT INTO Company VALUES (%ld,'%@','%@','%@',%ld)",((long)newCompany.Pk+1),newCompany.companyName,newCompany.companyImg,newCompany.companyTitle,(long)newCompany.ID];
+    [self sqlPers:tempCompanySQL];
+    for (int i=0; i<newCompany.productObjectArray.count; i++) {
+        Product *tempProduct = [[Product alloc] init];
+        tempProduct = newCompany.productObjectArray[i];
+        NSInteger temp = [self countProductRows:@"SELECT * FROM Product"];
+        NSString *tempProductSQL = [NSString stringWithFormat:@"INSERT INTO Product VALUES (%d,'%@','%@','%@',%ld,%ld)",(temp +1),tempProduct.productName,tempProduct.productImg,tempProduct.productURL,((long)newCompany.Pk+1),(long)i];
+        [self sqlPers:tempProductSQL];
+        
+    }
+}
+-(void)manageEditForum:(Company *)editedCompany{
+ NSString *tempCompanySQL = [NSString stringWithFormat:@"UPDATE Company SET name = '%@',logoURL = '%@',company_Title = '%@','index' = %ld WHERE company_Title = '%@'",editedCompany.companyName,editedCompany.companyImg,editedCompany.companyTitle,(long)editedCompany.ID,editedCompany.companyName];
+    [self sqlPers:tempCompanySQL];
+    for (int i=0; i<editedCompany.productObjectArray.count; i++) {
+        Product *tempProduct = [[Product alloc] init];
+        tempProduct = editedCompany.productObjectArray[i];
+        NSString *tempProductSQL = [NSString stringWithFormat:@"Update Product SET name ='%@', logoURL = '%@',URL = '%@', Company_ID = %ld, 'index' = %ld WHERE id = '%ld'",tempProduct.productName,tempProduct.productImg,tempProduct.productURL,(long)editedCompany.Pk,(long)i,(long)tempProduct.PK];
+        [self sqlPers:tempProductSQL];
+
+}
+}
+
 
 @end
 
