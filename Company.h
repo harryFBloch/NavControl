@@ -22,4 +22,5 @@
 @property(nonatomic) NSInteger Pk;
 @property(nonatomic,strong) NSMutableArray *productNameArray;
 
++(id)CompanyManager;
 @end

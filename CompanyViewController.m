@@ -41,6 +41,10 @@
    
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addRow:)];
     self.navigationItem.leftBarButtonItem = addButton ;
+    self.data = [Dao sharedManager];
+    [self.data openDB];
+    [self.data countRows];
+    [self.data databaseInfo];
     
 
 
@@ -49,16 +53,15 @@
 -(void)addRow:sender{
     addCompanyViewController *add = [[addCompanyViewController alloc]init];
     add.title = @"Add a Company";
+    [add autorelease];
     [self.navigationController
      pushViewController:add
      animated:YES];
+   
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.data = [Dao sharedManager];
-    [self.data openDB];
-    [self.data countRows];
-    [self.data databaseInfo];
+    
 
     [self.tableView reloadData];
 }
@@ -92,20 +95,10 @@
     if (self.cell == nil) {
         self.cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
     // Configure the cell...
-
-
-    self.cell.textLabel.text = [self.data.companynames objectAtIndex:[indexPath row]];
-    NSString *tempString = [self.data.imgArray objectAtIndex:indexPath.row];
-    NSData *imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:tempString]];
-    self.cell.imageView.image =[UIImage imageWithData:imageData];
-    
-
-    self.cell.textLabel.text = [self.data.companynames objectAtIndex:indexPath.row];
-    self.cell.imageView.image =[UIImage imageNamed:[self.data.imgArray objectAtIndex:indexPath.row]];
-
-    
+    Company *temp = [self.data.companyList objectAtIndex:indexPath.row];
+    self.cell.textLabel.text = temp.companyName;
+    self.cell.imageView.image =[UIImage imageNamed:temp.companyImg];
     return self.cell;
 }
 
@@ -116,25 +109,22 @@
     if (tableView.editing ==YES) {
         tableView.allowsSelectionDuringEditing = YES;
     }
-  
    // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-
-
-
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        NSString *temp = [[NSString alloc ]initWithString: [self.data.companynames objectAtIndex:indexPath.row]];
-        [self.data deleteFromDBCompany:temp];
+        Company *tempC = self.data.companyList[indexPath.row];
+        NSString *temp = [[NSString alloc ]initWithString: tempC.companyTitle];
+       
         [self.data.companyList removeObjectAtIndex:indexPath.row];
-        [self.data.companynames removeObjectAtIndex:indexPath.row];
-        [self.data.imgArray removeObjectAtIndex:indexPath.row];
+        [self.data deleteFromDBCompany:temp];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [temp release];
         [tableView reloadData];
         
     }   
@@ -143,22 +133,15 @@
       
     }
 }
-
-
-
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
-    NSString *tempString = [self.data.companyList objectAtIndex:fromIndexPath.row];
+    Company *tempString = [self.data.companyList objectAtIndex:fromIndexPath.row];
     [self.data.companyList removeObjectAtIndex:fromIndexPath.row];
-    [self.data.companynames removeObjectAtIndex:fromIndexPath.row];
     [self.data.companyList insertObject:tempString atIndex:toIndexPath.row];
-    [self.data.companynames insertObject:tempString atIndex:toIndexPath.row];
     [self.data reArrange];
     
 }
-
-
 /*
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
@@ -179,40 +162,15 @@
         addCompanyViewController *editCompany = [[addCompanyViewController alloc] init];
         editCompany.title = @"Edit a Company";
         editCompany.currentCompany = [self.data.companyList objectAtIndex:indexPath.row];
-        [self.data.companyList removeObjectAtIndex:indexPath.row];
-        [self.data.companynames removeObjectAtIndex:indexPath.row];
-        [self.data.imgArray removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [tableView reloadData];
         [self.navigationController pushViewController:editCompany animated:YES];
+        [editCompany release];
         return;
     }
    
-//    NSUInteger appleIndex = [self.data.companyList indexOfObject:@"Apple mobile devices"];
-//     NSUInteger samsungIndex = [self.data.companyList indexOfObject:@"Samsung mobile devices"];
-//     NSUInteger htcIndex = [self.data.companyList indexOfObject:@"HTC mobile devices"];
-//     NSUInteger blackberryIndex = [self.data.companyList indexOfObject:@"Blackberry mobile devices"];
-//
-//    if (indexPath.row == appleIndex){
-//        self.productViewController.title = @"Apple mobile devices";
-//        
-//    } else if(indexPath.row == samsungIndex) {
-//        self.productViewController.title = @"Samsung mobile devices";
-//    } else if(indexPath.row == htcIndex) {
-//        self.productViewController.title = @"HTC mobile devices";
-//    }else if(indexPath.row == blackberryIndex) {
-//        self.productViewController.title = @"Blackberry mobile devices";
-//    }
+
     self.productViewController.currentCompany = [self.data.companyList objectAtIndex:indexPath.row];
-//    self.productViewController.title = [self.data.companynames objectAtIndex:indexPath.row];
-    
     [self.navigationController
         pushViewController:self.productViewController
         animated:YES];
-    
-
 }
- 
-
-
 @end

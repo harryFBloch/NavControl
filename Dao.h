@@ -32,12 +32,9 @@
 @property (nonatomic) sqlite3 *deleteCompany;
 @property (nonatomic) sqlite3 *deleteProduct;
 
-@property (nonatomic,retain)  Company *company;
 @property (nonatomic,retain)  Company *company2;
 
-@property (nonatomic,strong) NSMutableArray *productObjectArrayTemp;
 @property (nonatomic,strong) NSMutableArray *productIDArray;
-@property (nonatomic,strong) NSMutableArray *tempCompanyList;
 @property (nonatomic) NSInteger max;
 @property (nonatomic) NSInteger productMax;
 @property (nonatomic) NSInteger tempINT;
@@ -50,7 +47,7 @@
 
 
 +(id)sharedManager;
--(void)createCompanies;
+//-(void)createCompanies;
 -(void)openDB;
 -(void)databaseInfo;
 -(void)deleteFromDBCompany:(NSString*)query;

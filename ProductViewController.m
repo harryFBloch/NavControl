@@ -27,6 +27,7 @@
         // Custom initialization
     }
     return self;
+    
 }
 
 - (void)viewDidLoad
@@ -40,9 +41,9 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
      
-    self.title = @"Mobile device makers";
+    
 
-   
+    self.data = [Dao sharedManager];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -84,15 +85,15 @@
     // Configure the cell...
 
     self.cell.textLabel.text = [self.currentCompany.productArray objectAtIndex:[indexPath row]];
-    NSString *tempString = [self.currentCompany.productImgArray objectAtIndex:indexPath.row];
-    NSData *imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:tempString]];
-    self.cell.imageView.image =[UIImage imageWithData:imageData];
+    Product *temp = self.currentCompany.productObjectArray[indexPath.row];
+   
+    self.cell.imageView.image =[UIImage imageNamed:temp.productImg];
     self.title = self.currentCompany.companyTitle;
-
-    self.cell.textLabel.text = [self.currentCompany.productNameArray objectAtIndex:[indexPath row]];
-    self.cell.imageView.image =[UIImage imageWithContentsOfFile:[self.currentCompany.productImgArray objectAtIndex:indexPath.row]];
-
+    
+    self.cell.textLabel.text = temp.productName;
     return self.cell;
+    
+   
 }
 
 /*
@@ -111,11 +112,12 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         NSString *temp = [[NSString alloc ]initWithString: [self.currentCompany.productNameArray objectAtIndex:indexPath.row]];
-        [self.data deleteFromDBProduct:temp];
+        
         [self.currentCompany.productObjectArray removeObjectAtIndex:indexPath.row];
-        [self.currentCompany.productImgArray removeObjectAtIndex:indexPath.row];
-        [self.currentCompany.websiteArray removeObjectAtIndex:indexPath.row];
+        [self.data.companyList replaceObjectAtIndex:self.currentCompany.ID withObject:self.currentCompany];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.data deleteFromDBProduct:temp];
+        [temp autorelease];
         [tableView reloadData];
        
     }   
@@ -129,15 +131,9 @@
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
-    NSString *tempstring = [self.currentCompany.websiteArray objectAtIndex:fromIndexPath.row];
-    NSString *imgTemp = [self.currentCompany.productImgArray objectAtIndex:fromIndexPath.row];
-     NSString *nameTemp = [self.currentCompany.productNameArray objectAtIndex:fromIndexPath.row];
-    [self.currentCompany.websiteArray removeObjectAtIndex:fromIndexPath.row];
-    [self.currentCompany.websiteArray insertObject:tempstring atIndex:toIndexPath.row];
-    [self.currentCompany.productImgArray removeObjectAtIndex:fromIndexPath.row];
-    [self.currentCompany.productImgArray insertObject:imgTemp atIndex:toIndexPath.row];
-    [self.currentCompany.productNameArray removeObjectAtIndex:fromIndexPath.row];
-    [self.currentCompany.productNameArray insertObject:nameTemp atIndex:toIndexPath.row];
+    Product *temp = self.currentCompany.productObjectArray[fromIndexPath.row];
+    [self.currentCompany.productObjectArray removeObjectAtIndex:fromIndexPath.row];
+    [self.currentCompany.productObjectArray insertObject:temp atIndex:toIndexPath.row];
     [self.data productReArrange:self.currentCompany];
 }
 
@@ -157,50 +153,14 @@
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    Product *temp = self.currentCompany.productObjectArray[indexPath.row];
     WebSitViewController *detailViewController = [[WebSitViewController alloc]init];
-    detailViewController.websiteUrl = [[NSURL alloc]initWithString:[self.currentCompany.websiteArray objectAtIndex:indexPath.row]];
+    detailViewController.websiteUrl = [[NSURL alloc]initWithString:temp.productURL];
     [self.navigationController pushViewController:detailViewController animated:YES];
-    
-    
-    
-    
-    
+    [detailViewController release];
+   
 }
  
 
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

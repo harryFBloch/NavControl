@@ -21,8 +21,10 @@
     // Do any additional setup after loading the view.
         self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     NSURLRequest *request = [NSURLRequest requestWithURL:self.websiteUrl];
-    [self.webView loadRequest:request];
+     [self.webView loadRequest:request];
      [self.view addSubview:self.webView];
+    
+   
     
 }
 

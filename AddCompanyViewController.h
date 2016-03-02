@@ -16,10 +16,6 @@
 
 @interface addCompanyViewController : UIViewController
 
-@property(retain) Product *insertProductOne;
-@property(retain) Product *insertProductTwo;
-@property(retain) Product *insertProductThree;
-@property(retain) Company *insertCompany;
 @property(retain) Company *currentCompany;
 @property(retain) Dao *data;
 @property(nonatomic) NSInteger tempInt;
@@ -39,9 +35,6 @@
 @property(nonatomic,strong) UITextField *logoTwo;
 @property(nonatomic,strong) UITextField *logoThree;
 
-@property(nonatomic,strong) NSMutableArray *logoArray;
-@property(nonatomic,strong) NSMutableArray *productArray;
-@property(nonatomic,strong) NSMutableArray *urlArray;
 
 
 

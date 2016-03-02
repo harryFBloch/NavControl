@@ -10,6 +10,14 @@
 
 @implementation Company
 
-
++(id)CompanyManager{
+    static Company *companyManager = nil;
+    @synchronized(self) {
+        if (companyManager == nil) {
+            companyManager = [[self alloc]init];
+        }
+    }
+    return companyManager;
+}
 
 @end
