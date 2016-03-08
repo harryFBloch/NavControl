@@ -34,22 +34,37 @@
     self.title = @"Mobile device makers";
     // Uncomment the following line to preserve selection between presentations.
      self.clearsSelectionOnViewWillAppear = NO;
- 
+    UIBarButtonItem *undoButton = [[UIBarButtonItem alloc] initWithTitle:@"Undo" style:UIBarButtonItemStylePlain target:self action:@selector(undoButton)];
+   
+    NSArray *temp = [[NSArray alloc]initWithObjects:undoButton,self.editButtonItem, nil];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+//    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItems = temp;
+    
 
    
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addRow:)];
     self.navigationItem.leftBarButtonItem = addButton ;
     self.data = [Dao sharedManager];
-    [self.data openDB];
-    [self.data countRows];
-    [self.data databaseInfo];
+    [_data createCompanies];
+    MyDataController *temp1 = [MyDataController sharedManager];
+    [temp1 saveChanges];
+//    [self.data openDB];
+//    [self.data countRows];
+//    [self.data databaseInfo];
+  
+  
+    
     
 
 
 
     }
+-(void)undoButton{
+    MyDataController *coredata = [MyDataController sharedManager];
+    [coredata undoButton];
+    [self.tableView reloadData];
+}
 -(void)addRow:sender{
     addCompanyViewController *add = [[addCompanyViewController alloc]init];
     add.title = @"Add a Company";
@@ -61,7 +76,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+   
 
     [self.tableView reloadData];
 }
@@ -98,7 +113,7 @@
     // Configure the cell...
     Company *temp = [self.data.companyList objectAtIndex:indexPath.row];
     self.cell.textLabel.text = temp.companyName;
-    self.cell.imageView.image =[UIImage imageNamed:temp.companyImg];
+//    self.cell.imageView.image =[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:temp.companyImg]]];
     return self.cell;
 }
 
@@ -118,13 +133,11 @@
    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        Company *tempC = self.data.companyList[indexPath.row];
-        NSString *temp = [[NSString alloc ]initWithString: tempC.companyTitle];
-       
+     
+        MyDataController *temp = [MyDataController sharedManager];
+        [temp DeleteCompany:indexPath.row];
         [self.data.companyList removeObjectAtIndex:indexPath.row];
-        [self.data deleteFromDBCompany:temp];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [temp release];
         [tableView reloadData];
         
     }   
@@ -136,10 +149,15 @@
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
+    MyDataController *temp = [MyDataController sharedManager];
     Company *tempString = [self.data.companyList objectAtIndex:fromIndexPath.row];
+    Companies *tempComp = temp.companies[fromIndexPath.row];
+    [temp.companies removeObjectAtIndex:fromIndexPath.row];
+    [temp.companies insertObject:tempComp atIndex:toIndexPath.row];
     [self.data.companyList removeObjectAtIndex:fromIndexPath.row];
     [self.data.companyList insertObject:tempString atIndex:toIndexPath.row];
-    [self.data reArrange];
+    [temp companyRearrange];
+
     
 }
 /*

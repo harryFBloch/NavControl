@@ -12,6 +12,7 @@
 #import "Company.h"
 #import "ProductViewController.h"
 #import "CompanyViewController.h"
+#import "MyDataController.h"
 
 
 @interface addCompanyViewController : UIViewController

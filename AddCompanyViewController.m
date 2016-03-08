@@ -174,8 +174,7 @@
     insertCompany.companyImg = self.companylogoURL.text;
     insertCompany.companyName = self.companyNameText.text;
     insertCompany.index = self.currentCompany.index;
-    insertCompany.ID = self.currentCompany.ID;
-    insertCompany.Pk = self.currentCompany.Pk;
+   
     
    
     
@@ -183,15 +182,46 @@
     insertProductOne.productName = self.productOne.text;
     insertProductOne.productImg = self.logoOne.text;
     insertProductOne.productURL = self.urlOne.text;
+   
+    
     Product *insertProductTwo = [[Product alloc]init];
     insertProductTwo.productName = self.productTwo.text;
     insertProductTwo.productImg = self.logoTwo.text;
     insertProductTwo.productURL = self.urlTwo.text;
+  
     Product *insertProductThree = [[Product alloc]init];
     insertProductThree.productName = self.productThree.text;
     insertProductThree.productImg = self.logoThree.text;
     insertProductThree.productURL = self.urlThree.text;
+           MyDataController *coreData = [MyDataController sharedManager];
+    if (!self.currentCompany) {
+        insertProductOne.PK = coreData.produtcs.count;
+        insertProductTwo.PK = coreData.produtcs.count+1;
+        insertProductThree.PK = coreData.produtcs.count+2;
+    }
+    if (self.tempInt == 0) {
+        insertCompany.ID = self.data.companyList.count+1;
+        insertCompany.Pk = self.data.companyList.count;
+        insertProductOne.index = 0;
+        insertProductOne.companyID = insertCompany.ID;
+        insertProductTwo.companyID = insertCompany.ID;
+        insertProductTwo.index = 1;
+        insertProductThree.index = 2;
+        insertProductThree.companyID = insertCompany.ID;
+    }else{
+        insertCompany.ID = self.currentCompany.ID;
+        insertCompany.Pk = self.currentCompany.Pk;
+        insertProductOne.index = 0;
+        insertProductOne.companyID = self.currentCompany.ID;
+        insertProductTwo.companyID = self.currentCompany.ID;
+        insertProductTwo.index = 1;
+        insertProductThree.index = 2;
+        insertProductThree.companyID = self.currentCompany.ID;
+
+    }
+    
     for (int i=0; i<self.currentCompany.productObjectArray.count; i++) {
+        
         
        Product * temp = self.currentCompany.productObjectArray[i];
         if (i==0) {
@@ -210,14 +240,25 @@
     [insertProductTwo release];
     [insertProductThree release];
         self.data = [Dao sharedManager];
+  
 
     if (self.tempInt == 0) {
-        insertCompany.Pk = self.data.companyList.count;
-        insertCompany.ID = self.data.companyList.count;
+        insertCompany.Pk = self.data.companyList.count+1;
+        insertCompany.ID = self.data.companyList.count+1;
         insertCompany.index = self.data.companyList.count;
-        [self.data manageADDForum:insertCompany];
-    }else {
-        [self.data manageEditForum:insertCompany];
+        MyDataController *coreData = [MyDataController sharedManager];
+        [self.data.companyList addObject:insertCompany];
+        [coreData addCompany:insertCompany];
+       
+    }else{
+       
+        MyDataController *coreData = [MyDataController sharedManager];
+        insertCompany.Pk = self.currentCompany.Pk;
+        insertCompany.ID = self.currentCompany.ID;
+        insertCompany.index = self.currentCompany.index;
+        [self.data.companyList replaceObjectAtIndex:self.currentCompany.index withObject:insertCompany];
+        [coreData editComany:insertCompany];
+        
     }
    
     [insertCompany release];

@@ -40,16 +40,17 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
-     
     
-
     self.data = [Dao sharedManager];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
     [self.tableView reloadData];
+    MyDataController *temp = [MyDataController sharedManager];
+    [temp saveChanges];
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,7 +72,13 @@
 {
 //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    
+    for (int i=0; i<self.currentCompany.productObjectArray.count; i++) {
+        Product *temp = self.currentCompany.productObjectArray[i];
+        if ([temp  isEqual: @""]) {
+            [self.currentCompany.productObjectArray removeObjectAtIndex:i];
+        }
+        
+    }
     return self.currentCompany.productObjectArray.count;
 }
 
@@ -83,17 +90,18 @@
         self.cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     // Configure the cell...
-
-    self.cell.textLabel.text = [self.currentCompany.productArray objectAtIndex:[indexPath row]];
+    
     Product *temp = self.currentCompany.productObjectArray[indexPath.row];
    
-    self.cell.imageView.image =[UIImage imageNamed:temp.productImg];
+    
+    
+//    self.cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:temp.productImg]]];
     self.title = self.currentCompany.companyTitle;
     
     self.cell.textLabel.text = temp.productName;
     return self.cell;
     
-   
+    
 }
 
 /*
@@ -111,13 +119,12 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        NSString *temp = [[NSString alloc ]initWithString: [self.currentCompany.productNameArray objectAtIndex:indexPath.row]];
-        
+       
+        MyDataController *tempDC = [MyDataController sharedManager];
+        [tempDC deleteProduct:self.currentCompany.productObjectArray[indexPath.row]];
         [self.currentCompany.productObjectArray removeObjectAtIndex:indexPath.row];
-        [self.data.companyList replaceObjectAtIndex:self.currentCompany.ID withObject:self.currentCompany];
+        [self.data.companyList replaceObjectAtIndex:self.currentCompany.Pk withObject:self.currentCompany];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [self.data deleteFromDBProduct:temp];
-        [temp autorelease];
         [tableView reloadData];
        
     }   
@@ -131,10 +138,17 @@
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
+    MyDataController *tempDC = [MyDataController sharedManager];
     Product *temp = self.currentCompany.productObjectArray[fromIndexPath.row];
+    Product *temp2 = self.currentCompany.productObjectArray[toIndexPath.row];
+    Products *proucts = [tempDC.produtcs objectAtIndex:temp.PK];
+    
+    [tempDC.produtcs removeObjectAtIndex:temp.PK];
+    [tempDC.produtcs insertObject:proucts atIndex:temp2.PK];
     [self.currentCompany.productObjectArray removeObjectAtIndex:fromIndexPath.row];
     [self.currentCompany.productObjectArray insertObject:temp atIndex:toIndexPath.row];
-    [self.data productReArrange:self.currentCompany];
+    [tempDC ProductRearrange:self.currentCompany];
+   
 }
 
 

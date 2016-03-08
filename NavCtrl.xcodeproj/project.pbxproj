@@ -36,6 +36,12 @@
 		4AAB1C3D1C6E493A002C3DE9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAB1C3C1C6E493A002C3DE9 /* WebKit.framework */; };
 		4AAB1C401C6E669F002C3DE9 /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB1C3F1C6E669F002C3DE9 /* Company.m */; };
 		4AAB1C431C6E66B1002C3DE9 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB1C421C6E66B1002C3DE9 /* Product.m */; };
+		4AD132581C8E323F00D1B8D5 /* Companies+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD132551C8E323F00D1B8D5 /* Companies+CoreDataProperties.m */; };
+		4AD132591C8E323F00D1B8D5 /* Products+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD132571C8E323F00D1B8D5 /* Products+CoreDataProperties.m */; };
+		4AF1E4731C88BA0E00683517 /* navControl.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4AF1E4711C88BA0E00683517 /* navControl.xcdatamodeld */; };
+		4AF1E4891C88C77000683517 /* Products.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF1E4831C88C77000683517 /* Products.m */; };
+		4AF1E48B1C88C77000683517 /* Companies.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF1E4871C88C77000683517 /* Companies.m */; };
+		4AF1E48F1C88CE6700683517 /* MyDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF1E48E1C88CE6700683517 /* MyDataController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +95,17 @@
 		4AAB1C3F1C6E669F002C3DE9 /* Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Company.m; sourceTree = "<group>"; };
 		4AAB1C411C6E66B1002C3DE9 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
 		4AAB1C421C6E66B1002C3DE9 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
+		4AD132541C8E323F00D1B8D5 /* Companies+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Companies+CoreDataProperties.h"; sourceTree = "<group>"; };
+		4AD132551C8E323F00D1B8D5 /* Companies+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Companies+CoreDataProperties.m"; sourceTree = "<group>"; };
+		4AD132561C8E323F00D1B8D5 /* Products+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Products+CoreDataProperties.h"; sourceTree = "<group>"; };
+		4AD132571C8E323F00D1B8D5 /* Products+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Products+CoreDataProperties.m"; sourceTree = "<group>"; };
+		4AF1E4721C88BA0E00683517 /* navControl.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = navControl.xcdatamodel; sourceTree = "<group>"; };
+		4AF1E4821C88C77000683517 /* Products.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Products.h; sourceTree = "<group>"; };
+		4AF1E4831C88C77000683517 /* Products.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Products.m; sourceTree = "<group>"; };
+		4AF1E4861C88C77000683517 /* Companies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Companies.h; sourceTree = "<group>"; };
+		4AF1E4871C88C77000683517 /* Companies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Companies.m; sourceTree = "<group>"; };
+		4AF1E48D1C88CE6700683517 /* MyDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDataController.h; sourceTree = "<group>"; };
+		4AF1E48E1C88CE6700683517 /* MyDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDataController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +253,10 @@
 		4A7648861C6E872E00D086CF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4AF1E48C1C88CE2700683517 /* CD SUBClasses */,
+				4AF1E4711C88BA0E00683517 /* navControl.xcdatamodeld */,
+				4AF1E48D1C88CE6700683517 /* MyDataController.h */,
+				4AF1E48E1C88CE6700683517 /* MyDataController.m */,
 				4A76488C1C6E87DA00D086CF /* Dao */,
 				4AAB1C411C6E66B1002C3DE9 /* Product.h */,
 				4AAB1C421C6E66B1002C3DE9 /* Product.m */,
@@ -268,6 +289,21 @@
 				4A76488A1C6E87CB00D086CF /* Dao.m */,
 			);
 			name = Dao;
+			sourceTree = "<group>";
+		};
+		4AF1E48C1C88CE2700683517 /* CD SUBClasses */ = {
+			isa = PBXGroup;
+			children = (
+				4AF1E4821C88C77000683517 /* Products.h */,
+				4AF1E4831C88C77000683517 /* Products.m */,
+				4AF1E4861C88C77000683517 /* Companies.h */,
+				4AF1E4871C88C77000683517 /* Companies.m */,
+				4AD132541C8E323F00D1B8D5 /* Companies+CoreDataProperties.h */,
+				4AD132551C8E323F00D1B8D5 /* Companies+CoreDataProperties.m */,
+				4AD132561C8E323F00D1B8D5 /* Products+CoreDataProperties.h */,
+				4AD132571C8E323F00D1B8D5 /* Products+CoreDataProperties.m */,
+			);
+			name = "CD SUBClasses";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,12 +413,18 @@
 				4AAB1C431C6E66B1002C3DE9 /* Product.m in Sources */,
 				48A656E618163C1B00746D36 /* CompanyViewController.m in Sources */,
 				4A7648A71C73CC9500D086CF /* addCompanyViewController.m in Sources */,
+				4AD132581C8E323F00D1B8D5 /* Companies+CoreDataProperties.m in Sources */,
+				4AF1E4731C88BA0E00683517 /* navControl.xcdatamodeld in Sources */,
 				4AAB1C401C6E669F002C3DE9 /* Company.m in Sources */,
 				48A656C518163BF200746D36 /* NavControllerAppDelegate.m in Sources */,
+				4AD132591C8E323F00D1B8D5 /* Products+CoreDataProperties.m in Sources */,
 				4A76488B1C6E87CB00D086CF /* Dao.m in Sources */,
 				4AAB1C3B1C6E3AA3002C3DE9 /* WebSitViewController.m in Sources */,
+				4AF1E48F1C88CE6700683517 /* MyDataController.m in Sources */,
+				4AF1E4891C88C77000683517 /* Products.m in Sources */,
 				48A656C118163BF200746D36 /* main.m in Sources */,
 				48A656EB18163F8700746D36 /* ProductViewController.m in Sources */,
+				4AF1E48B1C88C77000683517 /* Companies.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +642,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4AF1E4711C88BA0E00683517 /* navControl.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4AF1E4721C88BA0E00683517 /* navControl.xcdatamodel */,
+			);
+			currentVersion = 4AF1E4721C88BA0E00683517 /* navControl.xcdatamodel */;
+			path = navControl.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 48A656A918163BF200746D36 /* Project object */;
 }
