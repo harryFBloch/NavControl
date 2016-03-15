@@ -120,8 +120,8 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
        
-        MyDataController *tempDC = [MyDataController sharedManager];
-        [tempDC deleteProduct:self.currentCompany.productObjectArray[indexPath.row]];
+//        MyDataController *tempDC = [MyDataController sharedManager];
+//        [tempDC deleteProduct:self.currentCompany.productObjectArray[indexPath.row]];
         [self.currentCompany.productObjectArray removeObjectAtIndex:indexPath.row];
         [self.data.companyList replaceObjectAtIndex:self.currentCompany.Pk withObject:self.currentCompany];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];

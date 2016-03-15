@@ -35,7 +35,7 @@
     }
     _managedObjectContext = [[NSManagedObjectContext alloc]init];
     [_managedObjectContext setPersistentStoreCoordinator:psc];
-    [_managedObjectContext setUndoManager:nil];
+    _managedObjectContext.undoManager = [[[NSUndoManager alloc]init]autorelease];
 }
 -(NSMutableArray *)loadAllFromDB:(NSString *)entityName{
     if (_tempInt == 0) {
@@ -87,8 +87,9 @@
     if (!self.companies) {
         self.companies = [[NSMutableArray alloc]init];
     }
-    Companies *c = [NSEntityDescription insertNewObjectForEntityForName:@"Companies" inManagedObjectContext:_managedObjectContext];
     
+    Companies *c = [NSEntityDescription insertNewObjectForEntityForName:@"Companies" inManagedObjectContext:_managedObjectContext];
+    [[[self managedObjectContext]undoManager]beginUndoGrouping];
     [c setCompanyID: companyID];
     [c setImg: img];
     [c setName: name];
@@ -96,6 +97,7 @@
     [c setIndex:index];
     [c setPk:index];
     [self.companies addObject: c];
+    [[[self managedObjectContext]undoManager]endUndoGrouping];
 }
 -(void)CreateProducts:(NSString *)name productURl:(NSString *)url productImg:(NSString *)img companyID:(NSNumber *)ID index:(NSNumber *)index primaryKey:(NSNumber *)key{
 //    [self saveChanges];
@@ -115,20 +117,32 @@
 -(void)DeleteCompany:(NSInteger)index{
 //    [self saveChanges];
     Companies *c = self.companies[index];
+    [self.companies removeObject:c];
+
     [_managedObjectContext deleteObject:c];
-    [self.companies removeObjectAtIndex:index];
-    for (int i = 0; i<self.companies.count; i++) {
+        for (int i = 0; i<self.companies.count; i++) {
         Companies *temp = self.companies[i];
         temp.index = [NSNumber numberWithInteger: i];
     }
 
     
 }
--(void)deleteProduct:(Product *)product{
+-(void)deleteProduct:(Company *)currentCompany product:(Product *)deletedProduct{
 //     [self saveChanges];
-    Products *p = self.produtcs[product.PK];
+    
+    Products *p = self.produtcs[deletedProduct.PK];
+    [self.produtcs removeObject:p];
     [_managedObjectContext deleteObject:p];
-   
+    NSInteger j = 0;
+    for (int i = 0 ; i<self.produtcs.count ; i++) {
+       Products *product = self.produtcs[i];
+
+        if ([product.companyID integerValue] == currentCompany.ID) {
+            NSNumber *indexTemp = [NSNumber numberWithInteger:j];
+            product.index = indexTemp;
+            j++;
+        }
+    }
     
     
 }
@@ -145,18 +159,14 @@
     
 }
 -(void)ProductRearrange:(Company *)currentCompany{
-    NSInteger j = 0;
-//       [self saveChanges];
-    for (int i = 0; i<self.produtcs.count; i++) {
-        Products *temp = self.produtcs[i];
-        NSInteger tempint = [temp.companyID integerValue];
-        if (tempint == currentCompany.ID) {
-            NSNumber *tempINT = [NSNumber numberWithInteger:j];
+    
+    for (int i = 0; i<currentCompany.productObjectArray.count; i++) {
+        Product *tempP = currentCompany.productObjectArray[i];
+        Products *temp = self.produtcs[tempP.PK];
+            NSNumber *tempINT = [NSNumber numberWithInteger:i];
             [temp setIndex:tempINT];
-            j++;
-          
-        }
-       
+        
+        
     }
 }
 
@@ -171,8 +181,8 @@
         NSNumber *temp5 = [NSNumber numberWithInteger:p.index];
         NSNumber *temp6 = [NSNumber numberWithInteger:p.PK];
         [self CreateProducts:p.productName productURl:p.productURL productImg:p.productImg companyID:temp4 index:temp5 primaryKey:temp6];
-
     }
+  
 }
 -(void)editComany:(Company *)company{
 
@@ -209,9 +219,26 @@
 }
 -(void)undoButton{
     [self.managedObjectContext undo];
+    [self.managedObjectContext save:nil];
     self.tempInt = 0;
     Dao *data = [Dao sharedManager];
     [data createCompanies];
 }
-
+-(void)addProduct:(Product *)product{
+    NSNumber *temp1 = [NSNumber numberWithInteger:product.companyID];
+    NSNumber *temp2 = [NSNumber numberWithInteger:product.index];
+    NSNumber *temp3 = [NSNumber numberWithInteger:product.PK];
+[self CreateProducts:product.productName productURl:product.productURL productImg:product.productImg companyID:temp1 index:temp2 primaryKey:temp3];
+}
+-(Company *)productUndo:(NSInteger)currentCompanyPK;{
+    [self.managedObjectContext undo];
+    [self.managedObjectContext save:nil];
+    self.tempInt = 0;
+    Dao *data = [Dao sharedManager];
+    [data createCompanies];
+    
+    Company *tempCompany = data.companyList[currentCompanyPK];
+    
+    return tempCompany;
+}
 @end

@@ -54,7 +54,7 @@
 //    [self.data databaseInfo];
   
   
-    
+   
     
 
 
@@ -66,7 +66,7 @@
     [self.tableView reloadData];
 }
 -(void)addRow:sender{
-    addCompanyViewController *add = [[addCompanyViewController alloc]init];
+    adCompanyViewController *add = [[adCompanyViewController alloc]init];
     add.title = @"Add a Company";
     [add autorelease];
     [self.navigationController
@@ -177,7 +177,7 @@
 {
     if (tableView.editing == YES) {
         NSLog(@"editing Mode Entered");
-        addCompanyViewController *editCompany = [[addCompanyViewController alloc] init];
+        adCompanyViewController *editCompany = [[adCompanyViewController alloc] init];
         editCompany.title = @"Edit a Company";
         editCompany.currentCompany = [self.data.companyList objectAtIndex:indexPath.row];
         [self.navigationController pushViewController:editCompany animated:YES];

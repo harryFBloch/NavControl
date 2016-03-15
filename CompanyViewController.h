@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Dao.h"
-#import "addCompanyViewController.h"
+#import "adCompanyViewController.h"
 
 @class ProductViewController;
 

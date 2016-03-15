@@ -20,181 +20,18 @@
     return DaoManager;
 }
 -(void)createCompanies{
-    
     MyDataController *coredata = [MyDataController sharedManager];
-  
     NSFileManager *tempFileManager = [NSFileManager defaultManager];
-    
     if (![tempFileManager fileExistsAtPath:[coredata archivePath] ]) {
-    [coredata initModelContext];
-        
-        
-    //create apple
-    Company *apple = [[Company alloc] init];
-        apple.companyTitle = @"Apple mobile devices";
-        apple.companyName = @"Apple";
-        apple.companyImg = @"http://logok.org/wp-content/uploads/2014/04/Apple-Logo-rainbow.png";
-        apple.ID = 1;
-        apple.index = 0;
-        apple.Pk = 0;
-    //create apple products
-    Product *ipad = [[Product alloc]init];
-        ipad.productName = @"iPad";
-        ipad.productURL = @"http://www.apple.com/ipad/";
-        ipad.productImg = @"https://www.apple.com/support/assets/images/products/ipad/hero_ipad_family_2015_2x.jpg";
-        ipad.companyID = 1;
-        ipad.index = 0;
-    Product *ipod = [[Product alloc]init];
-        ipod.productName = @"iPod Touch";
-        ipod.productURL = @"http://www.apple.com/shop/buy-ipod/ipod-touch?afid=p238%7CsKVyypZcE-dc_mtid_1870765e38482_pcrid_91262087527_&cid=aos-us-kwg-ipod-slid-";
-        ipod.productImg = @"https://www.apple.com/support/assets/images/products/ipodtouch/hero_ipodtouch6_2015.jpg";
-        ipod.companyID = 1;
-        ipod.index = 1;
-        
-    Product *iphone= [[Product alloc]init];
-        iphone.productName = @"iPhone";
-        iphone.productURL = @"http://www.apple.com/iphone/?afid=p238%7CsGy8lsjhy-dc_mtid_1870765e38482_pcrid_99437624767_&cid=aos-us-kwg-iphone-slid-";
-        iphone.productImg = @"https://www.apple.com/support/assets/images/products/iphone/hero_iphone_6s_2x.png";
-        iphone.companyID = 1;
-        iphone.index = 2;
-        
-    //store apple products in array
- 
-    apple.productObjectArray = [NSMutableArray arrayWithObjects:ipad,ipod,iphone, nil];
-    
-    //create samsung
-        
-    Company *samsung = [[Company alloc] init];
-        samsung.companyTitle = @"Samsung mobile devices";
-        samsung.companyImg = @"http://files.technobezz.com/files/uploads/2014/06/samsung-boot.jpg";
-        samsung.ID =2;
-        samsung.companyName = @"Samsung";
-        samsung.index = 1;
-        samsung.Pk = 1;
-    
-    Product *galaxyS6 = [[Product alloc]init];
-        galaxyS6.productName = @"Galaxy S6";
-        galaxyS6.productURL = @"http://www.samsung.com/us/explore/galaxy-s6-edge-plus-features-and-specs/?cid=ppc-";
-        galaxyS6.productImg = @"http://www.samsung.com/in/consumer-images/product/mobile-phone/2015/SM-G920IZDAINS/features/SM-G920IZDAINS-403979-2.jpg";
-        galaxyS6.companyID = 2;
-        galaxyS6.index = 0;
-    
-    
-    Product *galaxyNote = [[Product alloc]init];
-        galaxyNote.productName = @"Galaxy Note";
-        galaxyNote.productURL = @"http://www.samsung.com/us/explore/galaxy-note-5-features-and-specs/?cid=ppc-";
-        galaxyNote.productImg = @"http://cdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-note-i717-ofic.jpg";
-        galaxyNote.companyID = 2;
-        galaxyNote.index =1;
-    
-    Product *galaxyTab = [[Product alloc]init];
-        galaxyTab.productName = @"Galaxy Tab";
-        galaxyTab.productURL = @"http://www.samsung.com/us/mobile/galaxy-tab/";
-        galaxyTab.productImg = @"http://cdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-tab-ofic-3.jpg";
-        galaxyTab.companyID = 2;
-        galaxyTab.index = 2;
-    
-  
-    samsung.productObjectArray = [NSMutableArray arrayWithObjects:galaxyS6,galaxyNote,galaxyTab, nil];
-        
-    //create HTC
-    Company *htc = [[Company alloc] init];
-        htc.companyTitle = @"HTC mobile devices";
-        htc.companyImg = @"http://www.norebbo.com/wp-content/uploads/2012/02/melt_htc.jpg";
-        htc.companyName = @"HTC";
-        htc.ID = 3;
-        htc.index = 2;
-        htc.Pk = 2;
-        
-    Product *oneA9 = [[Product alloc]init];
-        oneA9.productName = @"ONE A9";
-        oneA9.productURL = @"http://www.htc.com/us/smartphones/htc-one-a9/";
-        oneA9.productImg = @"http://cnet4.cbsistatic.com/hub/i/r/2015/10/19/eb3b7231-4293-4d97-8573-5edb055f03da/thumbnail/770x433/1e9eea63bc946c6b5730694cc42ba74f/fd-htc-one-a9-product-nda.jpg";
-        oneA9.companyID = 3;
-        oneA9.index =0;
-    
-    Product *desire = [[Product alloc]init];
-        desire.productName = @"Desire";
-        desire.productURL = @"hhttp://www.htc.com/us/smartphones/htc-desire-626/";
-        desire.productImg = @"http://www.htc.com/managed-assets/shared/desktop/smartphones/htc-desire-626/en-us/att/sketchfab/htc-desire-626-en_us-att-marine-white-sketchfab.png";
-        desire.companyID = 3;
-        desire.index = 1;
-    
-    Product *oneM9 = [[Product alloc]init];
-        oneM9.productName = @"ONE M9";
-        oneM9.productURL = @"http://www.htc.com/us/smartphones/htc-one-m9/";
-        oneM9.productImg = @"http://www.htc.com/managed-assets/shared/desktop/smartphones/htc-one-m9/Sketchfab/htc-one-m9-global-sketchfab-gunmetal.png";
-        oneM9.companyID =3;
-        oneM9.index = 2;
-        
-   
-    htc.productObjectArray = [NSMutableArray arrayWithObjects:oneA9,desire,oneM9, nil];
-    
-    //create blackberry
-    Company *blackberry = [[Company alloc]init];
-        blackberry.companyTitle =@"Blackberry mobile devices";
-        blackberry.companyImg = @"http://siliconangle.com/files/2015/04/blackberry-logo.jpg";
-        blackberry.ID = 4;
-        blackberry.companyName = @"Blackberry";
-        blackberry.index = 3;
-        blackberry.Pk = 3;
-        
-    
-    Product *classic = [[Product alloc]init];
-        classic.productName = @"Classic";
-        classic.productURL = @"http://us.blackberry.com/smartphones/blackberry-classic/overview.html";
-        classic.productImg = @"https://rimblogs.files.wordpress.com/2014/12/classic_black_2device-v2.jpg";
-        classic.companyID = 4;
-        classic.index = 0;
-    
-    Product *leap = [[Product alloc]init];
-        leap.productName = @"Leap";
-        leap.productURL = @"http://us.blackberry.com/smartphones/blackberry-leap/overview.html";
-        leap.productImg = @"http://o.aolcdn.com/hss/storage/midas/52df4a7a20deb754db9f3dbb4f77805d/201633836/leap-fb.jpg";
-        leap.companyID = 4;
-        leap.index = 1;
-    
-    Product *z30 = [[Product alloc]init];
-        z30.productName = @"Z30";
-        z30.productURL = @"http://us.blackberry.com/smartphones/blackberry-z30/overview.html";
-        z30.productImg = @"http://us.blackberry.com/content/dam/bbCompany/Desktop/Global/Device/Z30/Z30_Front.jpg";
-        z30.companyID = 4;
-        z30.index = 2;
-    
-   
-    blackberry.productObjectArray = [NSMutableArray arrayWithObjects:classic,leap,z30, nil];
-    
-    self.companyList = [NSMutableArray arrayWithObjects: apple,samsung,htc,blackberry,nil];
-        self.products = [NSMutableArray arrayWithObjects:ipad,ipod,iphone,
-                         galaxyS6,galaxyNote,galaxyTab,
-                         oneA9,desire,oneM9,
-                         classic,leap,z30, nil];
-        NSInteger integer = 0;
-        for (int i = 0 ; i<self.companyList.count; i++) {
-            Company *temp = self.companyList[i];
-            NSNumber *tempN = [NSNumber numberWithInteger:temp.ID];
-            NSNumber *tempInt = [NSNumber numberWithInteger:i];
-            [coredata CreateCompany:temp.companyName companyTitle:temp.companyTitle CompanyImg:temp.companyImg companyIDnumber:tempN index:tempInt];
-            for (int j=0; j<temp.productObjectArray.count; j++) {
-                Product *tempP = temp.productObjectArray[j];
-                NSNumber *tempINT2 = [NSNumber numberWithInteger:j];
-                NSNumber *tempPN = [NSNumber numberWithInteger:tempP.companyID];
-                NSNumber *tempnumber = [NSNumber numberWithInteger:integer];
-                [coredata CreateProducts:tempP.productName productURl:tempP.productURL productImg:tempP.productImg companyID:tempPN index:tempINT2 primaryKey:tempnumber];
-                integer++;
-                }
-            }
+        [self hardCodedData];
     }else{
         self.companyList = [[NSMutableArray alloc]init];
          [coredata initModelContext];
         self.TempcompanyList = [[NSMutableArray alloc]initWithArray:[coredata loadAllFromDB:@"Companies"]];
         self.TempProducts = [[NSMutableArray alloc]initWithArray:[coredata loadAllFromDB:@"Products"]];
-        
-        
         for (int i = 0; i<self.TempcompanyList.count; i++) {
             [self.companyList addObject:@""];
         }
-        
         for (int i = 0 ; i<self.TempcompanyList.count; i++) {
             
             Companies *temp = self.TempcompanyList[i];
@@ -206,11 +43,12 @@
             tempCompany.index = [temp.index integerValue];
             tempCompany.productObjectArray = [[NSMutableArray alloc]init];
             tempCompany.Pk = i;
-          
-            for (int z=0; z<3; z++) {
-                [tempCompany.productObjectArray addObject:@""];
-            }
-            
+                for (int j = 0; j<self.TempProducts.count; j++) {
+                    Products *tempp = self.TempProducts[j];
+                    if ([tempp.companyID integerValue]== tempCompany.ID) {
+                         [tempCompany.productObjectArray addObject:@""];
+                    }
+                }
             for (int j =0; j<self.TempProducts.count; j++) {
                 Products *temp1 = self.TempProducts[j];
                 Product *tempProduct = [[Product alloc]init];
@@ -220,27 +58,185 @@
                 tempProduct.companyID = [temp1.companyID integerValue];
                 tempProduct.index = [temp1.index integerValue];
                 tempProduct.PK = j;
-                
                 if (tempProduct.companyID == tempCompany.ID) {
                   
                     [tempCompany.productObjectArray replaceObjectAtIndex:tempProduct.index withObject:tempProduct];
                 }
-            }
-              
+            }  
             [self.companyList replaceObjectAtIndex:tempCompany.index withObject:tempCompany];
         }
-        
+
     }
 }
+-(void)hardCodedData{
+    
+    MyDataController *coredata = [MyDataController sharedManager];
+    [coredata initModelContext];
+    //create apple
+    Company *apple = [[Company alloc] init];
+    apple.companyTitle = @"Apple mobile devices";
+    apple.companyName = @"Apple";
+    apple.companyImg = @"apple.png";
+    apple.ID = 1;
+    apple.index = 0;
+    apple.Pk = 0;
+    //create apple products
+    Product *ipad = [[Product alloc]init];
+    ipad.productName = @"iPad";
+    ipad.productURL = @"http://www.apple.com/ipad/";
+    ipad.productImg = @"ipad";
+    ipad.companyID = 1;
+    ipad.index = 0;
+    Product *ipod = [[Product alloc]init];
+    ipod.productName = @"iPod Touch";
+    ipod.productURL = @"http://www.apple.com/shop/buy-ipod/ipod-touch?afid=p238%7CsKVyypZcE-dc_mtid_1870765e38482_pcrid_91262087527_&cid=aos-us-kwg-ipod-slid-";
+    ipod.productImg = @"ipod-touch-product-initial-2015.png";
+    ipod.companyID = 1;
+    ipod.index = 1;
+    
+    Product *iphone= [[Product alloc]init];
+    iphone.productName = @"iPhone";
+    iphone.productURL = @"http://www.apple.com/iphone/?afid=p238%7CsGy8lsjhy-dc_mtid_1870765e38482_pcrid_99437624767_&cid=aos-us-kwg-iphone-slid-";
+    iphone.productImg = @"iphone";
+    iphone.companyID = 1;
+    iphone.index = 2;
+    
+    //store apple products in array
+    
+    apple.productObjectArray = [NSMutableArray arrayWithObjects:ipad,ipod,iphone, nil];
+    
+    //create samsung
+    
+    Company *samsung = [[Company alloc] init];
+    samsung.companyTitle = @"Samsung mobile devices";
+    samsung.companyImg = @"samsung-logo.jpeg";
+    samsung.ID =2;
+    samsung.companyName = @"Samsung";
+    samsung.index = 1;
+    samsung.Pk = 1;
+    
+    Product *galaxyS6 = [[Product alloc]init];
+    galaxyS6.productName = @"Galaxy S6";
+    galaxyS6.productURL = @"http://www.samsung.com/us/explore/galaxy-s6-edge-plus-features-and-specs/?cid=ppc-";
+    galaxyS6.productImg = @"glaxy";
+    galaxyS6.companyID = 2;
+    galaxyS6.index = 0;
+    
+    
+    Product *galaxyNote = [[Product alloc]init];
+    galaxyNote.productName = @"Galaxy Note";
+    galaxyNote.productURL = @"http://www.samsung.com/us/explore/galaxy-note-5-features-and-specs/?cid=ppc-";
+    galaxyNote.productImg = @"gnote";
+    galaxyNote.companyID = 2;
+    galaxyNote.index =1;
+    
+    Product *galaxyTab = [[Product alloc]init];
+    galaxyTab.productName = @"Galaxy Tab";
+    galaxyTab.productURL = @"http://www.samsung.com/us/mobile/galaxy-tab/";
+    galaxyTab.productImg = @"gtab";
+    galaxyTab.companyID = 2;
+    galaxyTab.index = 2;
+    
+    
+    samsung.productObjectArray = [NSMutableArray arrayWithObjects:galaxyS6,galaxyNote,galaxyTab, nil];
+    
+    //create HTC
+    Company *htc = [[Company alloc] init];
+    htc.companyTitle = @"HTC mobile devices";
+    htc.companyImg = @"HTC.jpeg";
+    htc.companyName = @"HTC";
+    htc.ID = 3;
+    htc.index = 2;
+    htc.Pk = 2;
+    
+    Product *oneA9 = [[Product alloc]init];
+    oneA9.productName = @"ONE A9";
+    oneA9.productURL = @"http://www.htc.com/us/smartphones/htc-one-a9/";
+    oneA9.productImg = @"oneA9";
+    oneA9.companyID = 3;
+    oneA9.index =0;
+    
+    Product *desire = [[Product alloc]init];
+    desire.productName = @"Desire";
+    desire.productURL = @"hhttp://www.htc.com/us/smartphones/htc-desire-626/";
+    desire.productImg = @"desire";
+    desire.companyID = 3;
+    desire.index = 1;
+    
+    Product *oneM9 = [[Product alloc]init];
+    oneM9.productName = @"ONE M9";
+    oneM9.productURL = @"http://www.htc.com/us/smartphones/htc-one-m9/";
+    oneM9.productImg = @"oneM9";
+    oneM9.companyID =3;
+    oneM9.index = 2;
+    
+    
+    htc.productObjectArray = [NSMutableArray arrayWithObjects:oneA9,desire,oneM9, nil];
+    
+    //create blackberry
+    Company *blackberry = [[Company alloc]init];
+    blackberry.companyTitle =@"Blackberry mobile devices";
+    blackberry.companyImg = @"BlackBerry.png";
+    blackberry.ID = 4;
+    blackberry.companyName = @"Blackberry";
+    blackberry.index = 3;
+    blackberry.Pk = 3;
+    
+    
+    Product *classic = [[Product alloc]init];
+    classic.productName = @"Classic";
+    classic.productURL = @"http://us.blackberry.com/smartphones/blackberry-classic/overview.html";
+    classic.productImg = @"classic";
+    classic.companyID = 4;
+    classic.index = 0;
+    
+    Product *leap = [[Product alloc]init];
+    leap.productName = @"Leap";
+    leap.productURL = @"http://us.blackberry.com/smartphones/blackberry-leap/overview.html";
+    leap.productImg = @"leap";
+    leap.companyID = 4;
+    leap.index = 1;
+    
+    Product *z30 = [[Product alloc]init];
+    z30.productName = @"Z30";
+    z30.productURL = @"http://us.blackberry.com/smartphones/blackberry-z30/overview.html";
+    z30.productImg = @"z30";
+    z30.companyID = 4;
+    z30.index = 2;
+    
+    
+    blackberry.productObjectArray = [NSMutableArray arrayWithObjects:classic,leap,z30, nil];
+    
+    self.companyList = [NSMutableArray arrayWithObjects: apple,samsung,htc,blackberry,nil];
+    self.products = [NSMutableArray arrayWithObjects:ipad,ipod,iphone,
+                     galaxyS6,galaxyNote,galaxyTab,
+                     oneA9,desire,oneM9,
+                     classic,leap,z30, nil];
+    NSInteger integer = 0;
+    for (int i = 0 ; i<self.companyList.count; i++) {
+        Company *temp = self.companyList[i];
+        NSNumber *tempN = [NSNumber numberWithInteger:temp.ID];
+        NSNumber *tempInt = [NSNumber numberWithInteger:i];
+        [coredata CreateCompany:temp.companyName companyTitle:temp.companyTitle CompanyImg:temp.companyImg companyIDnumber:tempN index:tempInt];
+        for (int j=0; j<temp.productObjectArray.count; j++) {
+            Product *tempP = temp.productObjectArray[j];
+            NSNumber *tempINT2 = [NSNumber numberWithInteger:j];
+            NSNumber *tempPN = [NSNumber numberWithInteger:tempP.companyID];
+            NSNumber *tempnumber = [NSNumber numberWithInteger:integer];
+            [coredata CreateProducts:tempP.productName productURl:tempP.productURL productImg:tempP.productImg companyID:tempPN index:tempINT2 primaryKey:tempnumber];
+            integer++;
+        }
+    }
 
+}
 //-(void)openDB{
-//    
+//
 //    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"navDB" ofType:@"db"];
 //    NSError *error;
 //    NSFileManager *fileManager = [NSFileManager defaultManager];
 //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    
+//
 //    NSString *documentDBFolderPath = [documentsDirectory stringByAppendingString:@"/navDB.db"];
 //    self.dbPathString = documentDBFolderPath;
 //    if (![fileManager fileExistsAtPath:self.dbPathString]) {

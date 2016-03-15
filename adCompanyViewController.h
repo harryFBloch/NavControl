@@ -15,7 +15,7 @@
 #import "MyDataController.h"
 
 
-@interface addCompanyViewController : UIViewController
+@interface adCompanyViewController : UIViewController
 
 @property(retain) Company *currentCompany;
 @property(retain) Dao *data;

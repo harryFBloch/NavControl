@@ -23,19 +23,44 @@
 		48A656E718163C1B00746D36 /* CompanyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48A656E518163C1B00746D36 /* CompanyViewController.xib */; };
 		48A656EB18163F8700746D36 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A656E918163F8700746D36 /* ProductViewController.m */; };
 		48A656EE1816468000746D36 /* Sunflower.gif in Resources */ = {isa = PBXBuildFile; fileRef = 48A656ED1816468000746D36 /* Sunflower.gif */; };
+		4A0568D71C91FC970016134F /* AddProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0568D51C91FC970016134F /* AddProductViewController.m */; };
+		4A0568D81C91FC970016134F /* AddProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0568D61C91FC970016134F /* AddProductViewController.xib */; };
 		4A3B37C11C7F654B008CA340 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A3B37C01C7F654B008CA340 /* libsqlite3.tbd */; };
 		4A3B37C31C7F6A7B008CA340 /* navDB.db in Resources */ = {isa = PBXBuildFile; fileRef = 4A3B37C21C7F675B008CA340 /* navDB.db */; };
 		4A76488B1C6E87CB00D086CF /* Dao.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A76488A1C6E87CB00D086CF /* Dao.m */; };
 		4A7648A11C73AE8B00D086CF /* pics in Resources */ = {isa = PBXBuildFile; fileRef = 4A7648A01C73AE8B00D086CF /* pics */; };
-		4A7648A71C73CC9500D086CF /* addCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7648A61C73CC9500D086CF /* addCompanyViewController.m */; };
+		4A7648A71C73CC9500D086CF /* adCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7648A61C73CC9500D086CF /* adCompanyViewController.m */; };
 		4AAB1C2C1C6D2991002C3DE9 /* samsung-logo.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB1C2B1C6D2991002C3DE9 /* samsung-logo.jpeg */; };
-		4AAB1C301C6D299C002C3DE9 /* Blackberry_Logo_without_wordmark.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB1C2D1C6D299C002C3DE9 /* Blackberry_Logo_without_wordmark.svg.png */; };
-		4AAB1C311C6D299C002C3DE9 /* HTC.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB1C2E1C6D299C002C3DE9 /* HTC.jpeg */; };
-		4AAB1C321C6D299C002C3DE9 /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB1C2F1C6D299C002C3DE9 /* apple.png */; };
 		4AAB1C3B1C6E3AA3002C3DE9 /* WebSitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB1C3A1C6E3AA3002C3DE9 /* WebSitViewController.m */; };
 		4AAB1C3D1C6E493A002C3DE9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AAB1C3C1C6E493A002C3DE9 /* WebKit.framework */; };
 		4AAB1C401C6E669F002C3DE9 /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB1C3F1C6E669F002C3DE9 /* Company.m */; };
 		4AAB1C431C6E66B1002C3DE9 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB1C421C6E66B1002C3DE9 /* Product.m */; };
+		4AD0C0D81C90998700CD5AE5 /* MYCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD0C0D61C90998700CD5AE5 /* MYCollectionViewController.m */; };
+		4AD0C0D91C90998700CD5AE5 /* MYCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD0C0D71C90998700CD5AE5 /* MYCollectionViewController.xib */; };
+		4AD0C0E51C90BD6500CD5AE5 /* MyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD0C0E31C90BD6500CD5AE5 /* MyCell.m */; };
+		4AD0C0E61C90BD6500CD5AE5 /* MyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD0C0E41C90BD6500CD5AE5 /* MyCell.xib */; };
+		4AD0C0EF1C90C3DC00CD5AE5 /* ProductCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD0C0ED1C90C3DC00CD5AE5 /* ProductCollectionViewController.m */; };
+		4AD0C0F01C90C3DC00CD5AE5 /* ProductCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD0C0EE1C90C3DC00CD5AE5 /* ProductCollectionViewController.xib */; };
+		4AD0C1211C91D4AA00CD5AE5 /* ipod-touch-product-initial-2015.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AD0C1111C91D4AA00CD5AE5 /* ipod-touch-product-initial-2015.png */; };
+		4AD0C1221C91D4AA00CD5AE5 /* Blackberry_Logo_without_wordmark.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AD0C1121C91D4AA00CD5AE5 /* Blackberry_Logo_without_wordmark.svg.png */; };
+		4AD0C1231C91D4AA00CD5AE5 /* Blackberry.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AD0C1131C91D4AA00CD5AE5 /* Blackberry.png */; };
+		4AD0C1241C91D4AA00CD5AE5 /* BlackBerry-Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AD0C1141C91D4AA00CD5AE5 /* BlackBerry-Logo.png */; };
+		4AD0C1251C91D4AA00CD5AE5 /* ipad in Resources */ = {isa = PBXBuildFile; fileRef = 4AD0C1151C91D4AA00CD5AE5 /* ipad */; };
+		4AD0C1261C91D4AA00CD5AE5 /* gtab in Resources */ = {isa = PBXBuildFile; fileRef = 4AD0C1161C91D4AA00CD5AE5 /* gtab */; };
+		4AD0C1271C91D4AA00CD5AE5 /* iphone in Resources */ = {isa = PBXBuildFile; fileRef = 4AD0C1171C91D4AA00CD5AE5 /* iphone */; };
+		4AD0C1281C91D4AA00CD5AE5 /* desire in Resources */ = {isa = PBXBuildFile; fileRef = 4AD0C1181C91D4AA00CD5AE5 /* desire */; };
+		4AD0C1291C91D4AA00CD5AE5 /* z30 in Resources */ = {isa = PBXBuildFile; fileRef = 4AD0C1191C91D4AA00CD5AE5 /* z30 */; };
+		4AD0C12A1C91D4AA00CD5AE5 /* oneM9 in Resources */ = {isa = PBXBuildFile; fileRef = 4AD0C11A1C91D4AA00CD5AE5 /* oneM9 */; };
+		4AD0C12B1C91D4AA00CD5AE5 /* leap in Resources */ = {isa = PBXBuildFile; fileRef = 4AD0C11B1C91D4AA00CD5AE5 /* leap */; };
+		4AD0C12C1C91D4AA00CD5AE5 /* gnote in Resources */ = {isa = PBXBuildFile; fileRef = 4AD0C11C1C91D4AA00CD5AE5 /* gnote */; };
+		4AD0C12D1C91D4AA00CD5AE5 /* glaxy in Resources */ = {isa = PBXBuildFile; fileRef = 4AD0C11D1C91D4AA00CD5AE5 /* glaxy */; };
+		4AD0C12E1C91D4AA00CD5AE5 /* classic in Resources */ = {isa = PBXBuildFile; fileRef = 4AD0C11E1C91D4AA00CD5AE5 /* classic */; };
+		4AD0C12F1C91D4AA00CD5AE5 /* HTC.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4AD0C11F1C91D4AA00CD5AE5 /* HTC.jpeg */; };
+		4AD0C1301C91D4AA00CD5AE5 /* oneA9 in Resources */ = {isa = PBXBuildFile; fileRef = 4AD0C1201C91D4AA00CD5AE5 /* oneA9 */; };
+		4AD0C1321C91D51C00CD5AE5 /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AD0C1311C91D51C00CD5AE5 /* apple.png */; };
+		4AD0C1361C91D6F700CD5AE5 /* ADDCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD0C1341C91D6F700CD5AE5 /* ADDCompanyViewController.m */; };
+		4AD0C1371C91D6F700CD5AE5 /* ADDCompanyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD0C1351C91D6F700CD5AE5 /* ADDCompanyViewController.xib */; };
+		4AD0C1391C91DB0000CD5AE5 /* background_patterns_lines_shadow_43860_1920x1080.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4AD0C1381C91DB0000CD5AE5 /* background_patterns_lines_shadow_43860_1920x1080.jpg */; };
 		4AD132581C8E323F00D1B8D5 /* Companies+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD132551C8E323F00D1B8D5 /* Companies+CoreDataProperties.m */; };
 		4AD132591C8E323F00D1B8D5 /* Products+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD132571C8E323F00D1B8D5 /* Products+CoreDataProperties.m */; };
 		4AF1E4731C88BA0E00683517 /* navControl.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4AF1E4711C88BA0E00683517 /* navControl.xcdatamodeld */; };
@@ -77,17 +102,17 @@
 		48A656E818163F8700746D36 /* ProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductViewController.h; path = ../ProductViewController.h; sourceTree = "<group>"; };
 		48A656E918163F8700746D36 /* ProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductViewController.m; path = ../ProductViewController.m; sourceTree = "<group>"; };
 		48A656ED1816468000746D36 /* Sunflower.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Sunflower.gif; sourceTree = "<group>"; };
+		4A0568D41C91FC970016134F /* AddProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProductViewController.h; sourceTree = "<group>"; };
+		4A0568D51C91FC970016134F /* AddProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductViewController.m; sourceTree = "<group>"; };
+		4A0568D61C91FC970016134F /* AddProductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddProductViewController.xib; sourceTree = "<group>"; };
 		4A3B37C01C7F654B008CA340 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		4A3B37C21C7F675B008CA340 /* navDB.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = navDB.db; sourceTree = "<group>"; };
 		4A7648891C6E87CB00D086CF /* Dao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dao.h; sourceTree = "<group>"; };
 		4A76488A1C6E87CB00D086CF /* Dao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dao.m; sourceTree = "<group>"; };
 		4A7648A01C73AE8B00D086CF /* pics */ = {isa = PBXFileReference; lastKnownFileType = folder; path = pics; sourceTree = "<group>"; };
-		4A7648A51C73CC9500D086CF /* addCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = addCompanyViewController.h; path = ../addCompanyViewController.h; sourceTree = "<group>"; };
-		4A7648A61C73CC9500D086CF /* addCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = addCompanyViewController.m; path = ../addCompanyViewController.m; sourceTree = "<group>"; };
+		4A7648A51C73CC9500D086CF /* adCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = adCompanyViewController.h; path = ../adCompanyViewController.h; sourceTree = "<group>"; };
+		4A7648A61C73CC9500D086CF /* adCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = adCompanyViewController.m; path = ../adCompanyViewController.m; sourceTree = "<group>"; };
 		4AAB1C2B1C6D2991002C3DE9 /* samsung-logo.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "samsung-logo.jpeg"; sourceTree = "<group>"; };
-		4AAB1C2D1C6D299C002C3DE9 /* Blackberry_Logo_without_wordmark.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blackberry_Logo_without_wordmark.svg.png; sourceTree = "<group>"; };
-		4AAB1C2E1C6D299C002C3DE9 /* HTC.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = HTC.jpeg; sourceTree = "<group>"; };
-		4AAB1C2F1C6D299C002C3DE9 /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apple.png; sourceTree = "<group>"; };
 		4AAB1C391C6E3AA3002C3DE9 /* WebSitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebSitViewController.h; path = ../WebSitViewController.h; sourceTree = "<group>"; };
 		4AAB1C3A1C6E3AA3002C3DE9 /* WebSitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebSitViewController.m; path = ../WebSitViewController.m; sourceTree = "<group>"; };
 		4AAB1C3C1C6E493A002C3DE9 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -95,6 +120,36 @@
 		4AAB1C3F1C6E669F002C3DE9 /* Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Company.m; sourceTree = "<group>"; };
 		4AAB1C411C6E66B1002C3DE9 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
 		4AAB1C421C6E66B1002C3DE9 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
+		4AD0C0D51C90998700CD5AE5 /* MYCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYCollectionViewController.h; sourceTree = "<group>"; };
+		4AD0C0D61C90998700CD5AE5 /* MYCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYCollectionViewController.m; sourceTree = "<group>"; };
+		4AD0C0D71C90998700CD5AE5 /* MYCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MYCollectionViewController.xib; sourceTree = "<group>"; };
+		4AD0C0E21C90BD6500CD5AE5 /* MyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCell.h; path = ../MyCell.h; sourceTree = "<group>"; };
+		4AD0C0E31C90BD6500CD5AE5 /* MyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCell.m; path = ../MyCell.m; sourceTree = "<group>"; };
+		4AD0C0E41C90BD6500CD5AE5 /* MyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyCell.xib; path = ../MyCell.xib; sourceTree = "<group>"; };
+		4AD0C0EC1C90C3DC00CD5AE5 /* ProductCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductCollectionViewController.h; path = ../ProductCollectionViewController.h; sourceTree = "<group>"; };
+		4AD0C0ED1C90C3DC00CD5AE5 /* ProductCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductCollectionViewController.m; path = ../ProductCollectionViewController.m; sourceTree = "<group>"; };
+		4AD0C0EE1C90C3DC00CD5AE5 /* ProductCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductCollectionViewController.xib; path = ../ProductCollectionViewController.xib; sourceTree = "<group>"; };
+		4AD0C1111C91D4AA00CD5AE5 /* ipod-touch-product-initial-2015.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ipod-touch-product-initial-2015.png"; sourceTree = "<group>"; };
+		4AD0C1121C91D4AA00CD5AE5 /* Blackberry_Logo_without_wordmark.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blackberry_Logo_without_wordmark.svg.png; sourceTree = "<group>"; };
+		4AD0C1131C91D4AA00CD5AE5 /* Blackberry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blackberry.png; sourceTree = "<group>"; };
+		4AD0C1141C91D4AA00CD5AE5 /* BlackBerry-Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlackBerry-Logo.png"; sourceTree = "<group>"; };
+		4AD0C1151C91D4AA00CD5AE5 /* ipad */ = {isa = PBXFileReference; lastKnownFileType = file; path = ipad; sourceTree = "<group>"; };
+		4AD0C1161C91D4AA00CD5AE5 /* gtab */ = {isa = PBXFileReference; lastKnownFileType = file; path = gtab; sourceTree = "<group>"; };
+		4AD0C1171C91D4AA00CD5AE5 /* iphone */ = {isa = PBXFileReference; lastKnownFileType = file; path = iphone; sourceTree = "<group>"; };
+		4AD0C1181C91D4AA00CD5AE5 /* desire */ = {isa = PBXFileReference; lastKnownFileType = file; path = desire; sourceTree = "<group>"; };
+		4AD0C1191C91D4AA00CD5AE5 /* z30 */ = {isa = PBXFileReference; lastKnownFileType = file; path = z30; sourceTree = "<group>"; };
+		4AD0C11A1C91D4AA00CD5AE5 /* oneM9 */ = {isa = PBXFileReference; lastKnownFileType = file; path = oneM9; sourceTree = "<group>"; };
+		4AD0C11B1C91D4AA00CD5AE5 /* leap */ = {isa = PBXFileReference; lastKnownFileType = file; path = leap; sourceTree = "<group>"; };
+		4AD0C11C1C91D4AA00CD5AE5 /* gnote */ = {isa = PBXFileReference; lastKnownFileType = file; path = gnote; sourceTree = "<group>"; };
+		4AD0C11D1C91D4AA00CD5AE5 /* glaxy */ = {isa = PBXFileReference; lastKnownFileType = file; path = glaxy; sourceTree = "<group>"; };
+		4AD0C11E1C91D4AA00CD5AE5 /* classic */ = {isa = PBXFileReference; lastKnownFileType = file; path = classic; sourceTree = "<group>"; };
+		4AD0C11F1C91D4AA00CD5AE5 /* HTC.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = HTC.jpeg; sourceTree = "<group>"; };
+		4AD0C1201C91D4AA00CD5AE5 /* oneA9 */ = {isa = PBXFileReference; lastKnownFileType = file; path = oneA9; sourceTree = "<group>"; };
+		4AD0C1311C91D51C00CD5AE5 /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apple.png; sourceTree = "<group>"; };
+		4AD0C1331C91D6F700CD5AE5 /* ADDCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADDCompanyViewController.h; sourceTree = "<group>"; };
+		4AD0C1341C91D6F700CD5AE5 /* ADDCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADDCompanyViewController.m; sourceTree = "<group>"; };
+		4AD0C1351C91D6F700CD5AE5 /* ADDCompanyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ADDCompanyViewController.xib; sourceTree = "<group>"; };
+		4AD0C1381C91DB0000CD5AE5 /* background_patterns_lines_shadow_43860_1920x1080.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background_patterns_lines_shadow_43860_1920x1080.jpg; sourceTree = "<group>"; };
 		4AD132541C8E323F00D1B8D5 /* Companies+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Companies+CoreDataProperties.h"; sourceTree = "<group>"; };
 		4AD132551C8E323F00D1B8D5 /* Companies+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Companies+CoreDataProperties.m"; sourceTree = "<group>"; };
 		4AD132561C8E323F00D1B8D5 /* Products+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Products+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -149,6 +204,7 @@
 			children = (
 				48A656E318163C1B00746D36 /* CompanyViewController.h */,
 				48A656E418163C1B00746D36 /* CompanyViewController.m */,
+				4A9AB23A1C9220D1006E89B3 /* collectionView */,
 			);
 			name = ParentViewController;
 			path = NavCtrl;
@@ -161,8 +217,8 @@
 				48A656E918163F8700746D36 /* ProductViewController.m */,
 				4AAB1C391C6E3AA3002C3DE9 /* WebSitViewController.h */,
 				4AAB1C3A1C6E3AA3002C3DE9 /* WebSitViewController.m */,
-				4A7648A51C73CC9500D086CF /* addCompanyViewController.h */,
-				4A7648A61C73CC9500D086CF /* addCompanyViewController.m */,
+				4A7648A51C73CC9500D086CF /* adCompanyViewController.h */,
+				4A7648A61C73CC9500D086CF /* adCompanyViewController.m */,
 			);
 			name = ProductViewController;
 			path = NavCtrl;
@@ -172,15 +228,28 @@
 			isa = PBXGroup;
 			children = (
 				4A7648861C6E872E00D086CF /* Model */,
-				4AAB1C3E1C6E669F002C3DE9 /* Company.h */,
-				4AAB1C3F1C6E669F002C3DE9 /* Company.m */,
 				4A3B37C21C7F675B008CA340 /* navDB.db */,
 				4A7648871C6E873500D086CF /* View */,
 				4AAB1C2B1C6D2991002C3DE9 /* samsung-logo.jpeg */,
 				4A7648A01C73AE8B00D086CF /* pics */,
-				4AAB1C2D1C6D299C002C3DE9 /* Blackberry_Logo_without_wordmark.svg.png */,
-				4AAB1C2E1C6D299C002C3DE9 /* HTC.jpeg */,
-				4AAB1C2F1C6D299C002C3DE9 /* apple.png */,
+				4AD0C1111C91D4AA00CD5AE5 /* ipod-touch-product-initial-2015.png */,
+				4AD0C1121C91D4AA00CD5AE5 /* Blackberry_Logo_without_wordmark.svg.png */,
+				4AD0C1131C91D4AA00CD5AE5 /* Blackberry.png */,
+				4AD0C1141C91D4AA00CD5AE5 /* BlackBerry-Logo.png */,
+				4AD0C1151C91D4AA00CD5AE5 /* ipad */,
+				4AD0C1161C91D4AA00CD5AE5 /* gtab */,
+				4AD0C1171C91D4AA00CD5AE5 /* iphone */,
+				4AD0C1181C91D4AA00CD5AE5 /* desire */,
+				4AD0C1191C91D4AA00CD5AE5 /* z30 */,
+				4AD0C11A1C91D4AA00CD5AE5 /* oneM9 */,
+				4AD0C11B1C91D4AA00CD5AE5 /* leap */,
+				4AD0C1381C91DB0000CD5AE5 /* background_patterns_lines_shadow_43860_1920x1080.jpg */,
+				4AD0C1311C91D51C00CD5AE5 /* apple.png */,
+				4AD0C11C1C91D4AA00CD5AE5 /* gnote */,
+				4AD0C11D1C91D4AA00CD5AE5 /* glaxy */,
+				4AD0C11E1C91D4AA00CD5AE5 /* classic */,
+				4AD0C11F1C91D4AA00CD5AE5 /* HTC.jpeg */,
+				4AD0C1201C91D4AA00CD5AE5 /* oneA9 */,
 				48A656BA18163BF200746D36 /* NavCtrl */,
 				48A656D318163BF200746D36 /* NavCtrlTests */,
 				48A656B318163BF200746D36 /* Frameworks */,
@@ -253,13 +322,15 @@
 		4A7648861C6E872E00D086CF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4AAB1C3E1C6E669F002C3DE9 /* Company.h */,
+				4AAB1C3F1C6E669F002C3DE9 /* Company.m */,
+				4AAB1C411C6E66B1002C3DE9 /* Product.h */,
+				4AAB1C421C6E66B1002C3DE9 /* Product.m */,
 				4AF1E48C1C88CE2700683517 /* CD SUBClasses */,
 				4AF1E4711C88BA0E00683517 /* navControl.xcdatamodeld */,
 				4AF1E48D1C88CE6700683517 /* MyDataController.h */,
 				4AF1E48E1C88CE6700683517 /* MyDataController.m */,
 				4A76488C1C6E87DA00D086CF /* Dao */,
-				4AAB1C411C6E66B1002C3DE9 /* Product.h */,
-				4AAB1C421C6E66B1002C3DE9 /* Product.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -289,6 +360,28 @@
 				4A76488A1C6E87CB00D086CF /* Dao.m */,
 			);
 			name = Dao;
+			sourceTree = "<group>";
+		};
+		4A9AB23A1C9220D1006E89B3 /* collectionView */ = {
+			isa = PBXGroup;
+			children = (
+				4AD0C0D51C90998700CD5AE5 /* MYCollectionViewController.h */,
+				4AD0C0D61C90998700CD5AE5 /* MYCollectionViewController.m */,
+				4AD0C0D71C90998700CD5AE5 /* MYCollectionViewController.xib */,
+				4AD0C0E21C90BD6500CD5AE5 /* MyCell.h */,
+				4AD0C0E31C90BD6500CD5AE5 /* MyCell.m */,
+				4AD0C0E41C90BD6500CD5AE5 /* MyCell.xib */,
+				4AD0C0EE1C90C3DC00CD5AE5 /* ProductCollectionViewController.xib */,
+				4AD0C0EC1C90C3DC00CD5AE5 /* ProductCollectionViewController.h */,
+				4AD0C0ED1C90C3DC00CD5AE5 /* ProductCollectionViewController.m */,
+				4AD0C1331C91D6F700CD5AE5 /* ADDCompanyViewController.h */,
+				4AD0C1341C91D6F700CD5AE5 /* ADDCompanyViewController.m */,
+				4AD0C1351C91D6F700CD5AE5 /* ADDCompanyViewController.xib */,
+				4A0568D41C91FC970016134F /* AddProductViewController.h */,
+				4A0568D51C91FC970016134F /* AddProductViewController.m */,
+				4A0568D61C91FC970016134F /* AddProductViewController.xib */,
+			);
+			name = collectionView;
 			sourceTree = "<group>";
 		};
 		4AF1E48C1C88CE2700683517 /* CD SUBClasses */ = {
@@ -382,16 +475,36 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AD0C1371C91D6F700CD5AE5 /* ADDCompanyViewController.xib in Resources */,
+				4AD0C12C1C91D4AA00CD5AE5 /* gnote in Resources */,
+				4AD0C0D91C90998700CD5AE5 /* MYCollectionViewController.xib in Resources */,
+				4AD0C1241C91D4AA00CD5AE5 /* BlackBerry-Logo.png in Resources */,
+				4AD0C1261C91D4AA00CD5AE5 /* gtab in Resources */,
+				4AD0C0E61C90BD6500CD5AE5 /* MyCell.xib in Resources */,
 				4A3B37C31C7F6A7B008CA340 /* navDB.db in Resources */,
 				4A7648A11C73AE8B00D086CF /* pics in Resources */,
+				4A0568D81C91FC970016134F /* AddProductViewController.xib in Resources */,
+				4AD0C1291C91D4AA00CD5AE5 /* z30 in Resources */,
+				4AD0C1211C91D4AA00CD5AE5 /* ipod-touch-product-initial-2015.png in Resources */,
+				4AD0C1301C91D4AA00CD5AE5 /* oneA9 in Resources */,
+				4AD0C12E1C91D4AA00CD5AE5 /* classic in Resources */,
+				4AD0C12D1C91D4AA00CD5AE5 /* glaxy in Resources */,
 				48A656EE1816468000746D36 /* Sunflower.gif in Resources */,
+				4AD0C1271C91D4AA00CD5AE5 /* iphone in Resources */,
 				48A656E718163C1B00746D36 /* CompanyViewController.xib in Resources */,
+				4AD0C1281C91D4AA00CD5AE5 /* desire in Resources */,
 				48A656BF18163BF200746D36 /* InfoPlist.strings in Resources */,
+				4AD0C12A1C91D4AA00CD5AE5 /* oneM9 in Resources */,
+				4AD0C0F01C90C3DC00CD5AE5 /* ProductCollectionViewController.xib in Resources */,
 				4AAB1C2C1C6D2991002C3DE9 /* samsung-logo.jpeg in Resources */,
+				4AD0C12B1C91D4AA00CD5AE5 /* leap in Resources */,
+				4AD0C1231C91D4AA00CD5AE5 /* Blackberry.png in Resources */,
+				4AD0C1321C91D51C00CD5AE5 /* apple.png in Resources */,
+				4AD0C12F1C91D4AA00CD5AE5 /* HTC.jpeg in Resources */,
 				48A656C718163BF200746D36 /* Images.xcassets in Resources */,
-				4AAB1C311C6D299C002C3DE9 /* HTC.jpeg in Resources */,
-				4AAB1C321C6D299C002C3DE9 /* apple.png in Resources */,
-				4AAB1C301C6D299C002C3DE9 /* Blackberry_Logo_without_wordmark.svg.png in Resources */,
+				4AD0C1221C91D4AA00CD5AE5 /* Blackberry_Logo_without_wordmark.svg.png in Resources */,
+				4AD0C1391C91DB0000CD5AE5 /* background_patterns_lines_shadow_43860_1920x1080.jpg in Resources */,
+				4AD0C1251C91D4AA00CD5AE5 /* ipad in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,15 +525,20 @@
 			files = (
 				4AAB1C431C6E66B1002C3DE9 /* Product.m in Sources */,
 				48A656E618163C1B00746D36 /* CompanyViewController.m in Sources */,
-				4A7648A71C73CC9500D086CF /* addCompanyViewController.m in Sources */,
+				4A7648A71C73CC9500D086CF /* adCompanyViewController.m in Sources */,
 				4AD132581C8E323F00D1B8D5 /* Companies+CoreDataProperties.m in Sources */,
+				4AD0C0EF1C90C3DC00CD5AE5 /* ProductCollectionViewController.m in Sources */,
 				4AF1E4731C88BA0E00683517 /* navControl.xcdatamodeld in Sources */,
 				4AAB1C401C6E669F002C3DE9 /* Company.m in Sources */,
+				4AD0C1361C91D6F700CD5AE5 /* ADDCompanyViewController.m in Sources */,
 				48A656C518163BF200746D36 /* NavControllerAppDelegate.m in Sources */,
 				4AD132591C8E323F00D1B8D5 /* Products+CoreDataProperties.m in Sources */,
+				4A0568D71C91FC970016134F /* AddProductViewController.m in Sources */,
+				4AD0C0D81C90998700CD5AE5 /* MYCollectionViewController.m in Sources */,
 				4A76488B1C6E87CB00D086CF /* Dao.m in Sources */,
 				4AAB1C3B1C6E3AA3002C3DE9 /* WebSitViewController.m in Sources */,
 				4AF1E48F1C88CE6700683517 /* MyDataController.m in Sources */,
+				4AD0C0E51C90BD6500CD5AE5 /* MyCell.m in Sources */,
 				4AF1E4891C88C77000683517 /* Products.m in Sources */,
 				48A656C118163BF200746D36 /* main.m in Sources */,
 				48A656EB18163F8700746D36 /* ProductViewController.m in Sources */,

@@ -29,12 +29,14 @@
 -(void)CreateCompany:(NSString *)name companyTitle:(NSString *)title CompanyImg:(NSString *)img companyIDnumber:(NSNumber *)companyID index:(NSNumber *)index;
 -(void)CreateProducts:(NSString *)name productURl:(NSString *)url productImg:(NSString *)img companyID:(NSNumber *)ID index:(NSNumber *)index primaryKey:(NSNumber *)key;
 -(void)DeleteCompany:(NSInteger)index;
--(void)deleteProduct:(Product *)product;
+-(void)deleteProduct:(Company *)currentCompany product:(Product *)deletedProduct;
 -(void)companyRearrange;
 -(void)ProductRearrange:(Company *)currentCompany;
 -(void)addCompany:(Company *)company;
+-(void)addProduct:(Product *)product;
 -(void)editComany:(Company *)company;
 -(void)undoButton;
+-(Company *)productUndo:(NSInteger)currentCompanyPK;
 +(id)sharedManager;
 
 @end

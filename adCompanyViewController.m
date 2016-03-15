@@ -6,14 +6,14 @@
 //  Copyright © 2016 Aditya Narayan. All rights reserved.
 //
 
-#import "addCompanyViewController.h"
+#import "adCompanyViewController.h"
 #import "CompanyViewController.h"
 
-@interface addCompanyViewController ()
+@interface adCompanyViewController ()
 
 @end
 
-@implementation addCompanyViewController
+@implementation adCompanyViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
