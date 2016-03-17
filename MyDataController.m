@@ -7,6 +7,9 @@
 //
 
 #import "MyDataController.h"
+#import "AFNetworking.h"
+#import "MYCollectionViewController.h"
+
 
 @implementation MyDataController
 +(id)sharedManager{
@@ -47,12 +50,14 @@
         [request setEntity:e];
         NSError *error = nil;
         NSArray *result = [_managedObjectContext executeFetchRequest:request error:&error];
+        [request release];
         if (!result) {
             [NSException raise:@"FETCH FAILED" format:@"REASON:%@",[error localizedDescription]];
         }
         self.companies = [[NSMutableArray alloc]initWithArray:result];
         _tempInt ++;
         return self.companies;
+        
     }else{
         
         NSFetchRequest *request = [[NSFetchRequest alloc]init];
@@ -61,6 +66,7 @@
         [request setEntity:e];
         NSError *error = nil;
         NSArray *result = [_managedObjectContext executeFetchRequest:request error:&error];
+        [request release];
         if (!result) {
             [NSException raise:@"FETCH FAILED" format:@"REASON:%@",[error localizedDescription]];
         }
@@ -81,7 +87,7 @@
     NSLog(@"Data Saved");
 }
 
--(void)CreateCompany:(NSString *)name companyTitle:(NSString *)title CompanyImg:(NSString *)img companyIDnumber:(NSNumber *)companyID index:(NSNumber *)index;{
+-(void)CreateCompany:(NSString *)name companyTitle:(NSString *)title CompanyImg:(NSString *)img companyIDnumber:(NSNumber *)companyID index:(NSNumber *)index stockSymbol:(NSString *)symbol{
 //    [self saveChanges];
 
     if (!self.companies) {
@@ -94,6 +100,7 @@
     [c setImg: img];
     [c setName: name];
     [c setTitle: title];
+    [c setStockSymbol:symbol];
     [c setIndex:index];
     [c setPk:index];
     [self.companies addObject: c];
@@ -121,9 +128,9 @@
 
     [_managedObjectContext deleteObject:c];
         for (int i = 0; i<self.companies.count; i++) {
-        Companies *temp = self.companies[i];
-        temp.index = [NSNumber numberWithInteger: i];
-    }
+            Companies *temp = self.companies[i];
+            temp.index = [NSNumber numberWithInteger: i];
+        }
 
     
 }
@@ -143,9 +150,8 @@
             j++;
         }
     }
-    
-    
 }
+
 -(void)companyRearrange{
 
     for (int i = 0 ; i<self.companies.count; i++) {
@@ -153,8 +159,6 @@
         NSNumber *tempInt = [NSNumber numberWithInteger:i];
         [temp setPk:tempInt];
         [temp setIndex:tempInt];
-      
-        
     }
     
 }
@@ -174,7 +178,14 @@
 
     NSNumber *temp1 = [NSNumber numberWithInteger:company.ID];
     NSNumber *temp2 = [NSNumber numberWithInteger:company.index];
-    [self CreateCompany:company.companyName companyTitle:company.companyTitle CompanyImg:company.companyImg companyIDnumber:temp1 index:temp2];
+    
+    [self CreateCompany:company.companyName
+           companyTitle:company.companyTitle
+             CompanyImg:company.companyImg
+        companyIDnumber:temp1
+                  index:temp2
+            stockSymbol:company.stockSymbol];
+    
     for (int i = 0; i<company.productObjectArray.count; i++) {
         Product *p = company.productObjectArray[i];
         NSNumber *temp4 = [NSNumber numberWithInteger:company.ID];
@@ -224,12 +235,14 @@
     Dao *data = [Dao sharedManager];
     [data createCompanies];
 }
+
 -(void)addProduct:(Product *)product{
     NSNumber *temp1 = [NSNumber numberWithInteger:product.companyID];
     NSNumber *temp2 = [NSNumber numberWithInteger:product.index];
     NSNumber *temp3 = [NSNumber numberWithInteger:product.PK];
-[self CreateProducts:product.productName productURl:product.productURL productImg:product.productImg companyID:temp1 index:temp2 primaryKey:temp3];
+    [self CreateProducts:product.productName productURl:product.productURL productImg:product.productImg companyID:temp1 index:temp2 primaryKey:temp3];
 }
+
 -(Company *)productUndo:(NSInteger)currentCompanyPK;{
     [self.managedObjectContext undo];
     [self.managedObjectContext save:nil];
@@ -241,4 +254,50 @@
     
     return tempCompany;
 }
+
+-(void)CompanyLoop{
+    Dao *data = [Dao sharedManager];
+    NSMutableString *stockSymbols = [[NSMutableString alloc]init];
+    for (int i = 0;i < data.companyList.count; i++) {
+        NSString *stockSymbol = [NSString stringWithFormat:@",%@",[data.companyList[i] stockSymbol]];
+        [stockSymbols appendString:stockSymbol];
+    }
+    [self getStockPriceforCompany:stockSymbols];
+    [stockSymbols release];
+    
+}
+-(void)getStockPriceforCompany:(NSString *)queryString{
+    if (!self.stockprices ) {
+        self.stockprices = [[NSMutableArray alloc]init];
+    }else{
+        self.stockprices = nil;
+        self.stockprices = [[NSMutableArray alloc]init];
+    }
+    NSLog(@"STRING:\t%@",queryString);
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSString *stockSybolString = [NSString stringWithFormat:@"http://finance.yahoo.com/webservice/v1/symbols/%@/quote?format=json",queryString];
+    NSURL *URL = [NSURL URLWithString:stockSybolString];
+    [manager GET:URL.absoluteString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject){
+        NSLog(@"JSON: %@",responseObject);
+        NSDictionary *responseDict = responseObject;
+        for (int i = 0; i<[[responseDict valueForKeyPath:@"list.resources"] count]; i++) {
+            [self.stockprices addObject:[[[responseDict valueForKeyPath:@"list.resources" ] objectAtIndex:i] valueForKeyPath:@"resource.fields.price"]];
+        }
+        NSLog(@"%@",self.stockprices);
+        [self CompanyAddPrice:self.stockprices];
+        
+        
+    } failure:^(NSURLSessionTask *operation, NSError *error){
+        NSLog(@"Error: %@",error);
+    }];
+    [_stockprices autorelease];
+}
+-(void)CompanyAddPrice:(NSMutableArray *)priceArray{
+    Dao *data = [Dao sharedManager];
+    for (int i =0; i<data.companyList.count; i++) {
+        Company *tempCompany = data.companyList[i];
+             tempCompany.stockPrice = priceArray[i];
+    }
+}
+
 @end

@@ -18,6 +18,10 @@
 @property (nonatomic ,retain) MyDataController *coreData;
 @property (nonatomic) BOOL isDeleting;
 @property (nonatomic) NSInteger deletingInt;
-@property (nonatomic,strong)UIBarButtonItem *deleteButton;
+
+@property (nonatomic, strong) UIBarButtonItem *undoButton;
+@property (nonatomic, strong) UIBarButtonItem *saveButton;
+@property (nonatomic, strong) UIBarButtonItem *addButton;
+@property (nonatomic, strong) UIBarButtonItem *deleteButton;
 
 @end

@@ -2,10 +2,12 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F27" minimumToolsVersion="Xcode 7.0">
     <entity name="Companies" representedClassName="Companies" syncable="YES">
         <attribute name="companyID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="edited" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="img" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pk" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="stockSymbol" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Products" representedClassName="Products" syncable="YES">
@@ -17,7 +19,7 @@
         <attribute name="webSite" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Companies" positionX="-38" positionY="0" width="128" height="135"/>
+        <element name="Companies" positionX="-38" positionY="0" width="128" height="165"/>
         <element name="Products" positionX="-306" positionY="9" width="128" height="135"/>
     </elements>
 </model>

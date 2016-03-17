@@ -2,7 +2,7 @@
 //  Companies+CoreDataProperties.h
 //  NavCtrl
 //
-//  Created by harry bloch on 3/7/16.
+//  Created by harry bloch on 3/15/16.
 //  Copyright © 2016 Aditya Narayan. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -19,8 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *img;
 @property (nullable, nonatomic, retain) NSNumber *index;
 @property (nullable, nonatomic, retain) NSString *name;
-@property (nullable, nonatomic, retain) NSString *title;
 @property (nullable, nonatomic, retain) NSNumber *pk;
+@property (nullable, nonatomic, retain) NSString *title;
+@property (nullable, nonatomic, retain) NSString *stockSymbol;
+@property (nullable, nonatomic, retain) NSNumber *edited;
 
 @end
 

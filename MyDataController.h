@@ -20,13 +20,15 @@
 @property(strong) NSManagedObjectModel *model;
 @property(nonatomic,strong) NSMutableArray *companies;
 @property(nonatomic,strong) NSMutableArray *produtcs;
+@property(nonatomic,strong) NSMutableArray *stockprices;
 @property(nonatomic) NSInteger tempInt;
+@property(nonatomic,strong) NSString *priceString;
 
 -(NSString *) archivePath;
 -(void)initModelContext;
 -(NSMutableArray *)loadAllFromDB:(NSString *)entityName;
 -(void) saveChanges;
--(void)CreateCompany:(NSString *)name companyTitle:(NSString *)title CompanyImg:(NSString *)img companyIDnumber:(NSNumber *)companyID index:(NSNumber *)index;
+-(void)CreateCompany:(NSString *)name companyTitle:(NSString *)title CompanyImg:(NSString *)img companyIDnumber:(NSNumber *)companyID index:(NSNumber *)index stockSymbol:(NSString *)symbol;
 -(void)CreateProducts:(NSString *)name productURl:(NSString *)url productImg:(NSString *)img companyID:(NSNumber *)ID index:(NSNumber *)index primaryKey:(NSNumber *)key;
 -(void)DeleteCompany:(NSInteger)index;
 -(void)deleteProduct:(Company *)currentCompany product:(Product *)deletedProduct;
@@ -37,6 +39,9 @@
 -(void)editComany:(Company *)company;
 -(void)undoButton;
 -(Company *)productUndo:(NSInteger)currentCompanyPK;
+-(void)getStockPriceforCompany:(NSString *)queryString;
+-(void)CompanyLoop;
 +(id)sharedManager;
+
 
 @end

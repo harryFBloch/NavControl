@@ -25,6 +25,7 @@
         self.CompanyLogo.text = self.currentCompany.companyImg;
         self.companyName.text = self.currentCompany.companyName;
         self.editBool = true;
+        self.stockSymbolTxt.text = self.currentCompany.stockSymbol;
     }
 }
 
@@ -51,6 +52,7 @@
     if (self.editBool) {
         self.currentCompany.companyName = self.companyName.text;
         self.currentCompany.companyImg = self.CompanyLogo.text;
+        self.currentCompany.stockSymbol = self.stockSymbolTxt.text;
         [data.companyList replaceObjectAtIndex:self.currentCompany.index withObject:self.currentCompany];
         [coreData editComany:self.currentCompany];
         [self.navigationController popToRootViewControllerAnimated:YES];
@@ -61,11 +63,16 @@
         tempC.companyTitle = [NSString stringWithFormat:@"%@ mobile device makers",self.companyName.text];
         tempC.Pk = data.companyList.count+1;
         tempC.ID = data.companyList.count+1;
+        tempC.stockSymbol = self.stockSymbolTxt.text;
         tempC.index = data.companyList.count;
         [data.companyList addObject:tempC];
         [coreData addCompany:tempC];
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
     
+}
+- (void)dealloc {
+    [_stockSymbolTxt release];
+    [super dealloc];
 }
 @end

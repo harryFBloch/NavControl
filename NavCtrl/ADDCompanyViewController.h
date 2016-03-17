@@ -22,5 +22,6 @@
 
 @property(nonatomic) BOOL editBool;
 
+@property (retain, nonatomic) IBOutlet UITextField *stockSymbolTxt;
 
 @end

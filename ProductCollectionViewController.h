@@ -18,5 +18,9 @@
 
 @property (nonatomic) BOOL isDeleting;
 @property (nonatomic) NSInteger deletingInt;
++(id)sharedManager;
+@property (nonatomic,strong) UIBarButtonItem *addButton;
+@property (nonatomic,strong) UIBarButtonItem *undoButton;
+@property (nonatomic,strong) UIBarButtonItem *saveButton;
 
 @end

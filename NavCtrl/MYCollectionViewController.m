@@ -9,7 +9,7 @@
 #import "MYCollectionViewController.h"
 #import "MyCell.h"
 #import "ADDCompanyViewController.h"
-
+#import "AFNetworking.h"
 
 @interface MYCollectionViewController ()
 
@@ -24,42 +24,90 @@ static NSString * const reuseIdentifier = @"Cell";
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
-    UIBarButtonItem *undoButton = [[UIBarButtonItem alloc] initWithTitle:@"Undo" style:UIBarButtonItemStylePlain target:self action:@selector(undoButtonHandle)];
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveButtonHandle)];
-    self.deleteButton = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStylePlain target:self action:@selector(deleteButtonHandle)];
-    
-    NSArray *temp = [[NSArray alloc]initWithObjects:undoButton,saveButton,self.editButtonItem,self.deleteButton, nil];
-    self.navigationItem.rightBarButtonItems = temp;
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addRow)];
-    self.navigationItem.leftBarButtonItem = addButton ;
+    [self addButtons];
     self.data = [Dao sharedManager];
     [_data createCompanies];
     // Register cell classes
     [self.collectionView registerNib:[UINib nibWithNibName:@"MyCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
-    
+      self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_patterns_lines_shadow_43860_1920x1080.jpg"]];
     // Do any additional setup after loading the view.
-    self.data = [Dao sharedManager];
     MyDataController *temp1 = [MyDataController sharedManager];
-    self.installsStandardGestureForInteractiveMovement = true;
-    
     [temp1 saveChanges];
+    [self reachability];
+    [temp1 CompanyLoop];
     
-     self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_patterns_lines_shadow_43860_1920x1080.jpg"]];
+    self.installsStandardGestureForInteractiveMovement = true;
+    NSTimer * timer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+}
+
+-(void)reachability{
     
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status){
+        
+        NSLog(@"REACHABILIty: %@", AFStringFromNetworkReachabilityStatus(status));
+        if ([AFNetworkReachabilityManager sharedManager].reachable)
+        {
+            NSLog(@"INTERNET CONNECTION STARTED AGAIN");
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error you are not connected" message:@"Please connect to the internet" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            
+        }
+    }];
+    double delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    });
+}
+
+-(void)addButtons{
+    self.undoButton = [[UIBarButtonItem alloc] initWithTitle:@"Undo" style:UIBarButtonItemStylePlain target:self action:@selector(undoButtonHandle)];
+    [self.undoButton setEnabled:NO];
+    [self.undoButton setTintColor:[UIColor clearColor]];
+    self.saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveButtonHandle)];
+    [self.saveButton setTintColor:[UIColor redColor]];
+    self.deleteButton = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStylePlain target:self action:@selector(deleteButtonHandle)];
+    [self.deleteButton setTintColor:[UIColor redColor]];
+    
+    [self.editButtonItem setTintColor:[UIColor redColor]];
+    NSArray *temp = [[NSArray alloc]initWithObjects:self.undoButton,self.saveButton,self.editButtonItem,self.deleteButton, nil];
+    self.navigationItem.rightBarButtonItems = temp;
+    self.addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addRow)];
+    [self.addButton setTintColor:[UIColor redColor]];
+    self.navigationItem.leftBarButtonItem = self.addButton ;
+}
+
+-(void)timerFired{
+    MyDataController *temp1 = [MyDataController sharedManager];
+    [temp1 CompanyLoop];
+    [self.collectionView reloadData];
 }
 -(void)deleteButtonHandle{
+    if (!self.editing) {
+        
     
     if (self.deletingInt%2==0) {
         self.deleteButton.title = @"Done";
         self.isDeleting = true;
+        [self.undoButton setEnabled:YES];
+        [self.undoButton setTintColor:[UIColor redColor]];
+        [self.editButtonItem setEnabled:YES];
+        [self.editButtonItem setTintColor:[UIColor redColor]];
+        
     }else{
     self.deleteButton.title = @"Delete";
         self.isDeleting = false;
+        [self.editButtonItem setEnabled:NO];
+        [self.editButtonItem setTintColor:[UIColor clearColor]];
     }
    
     self.deletingInt++;
+    }
 }
 -(void)viewDidAppear:(BOOL)animated{
+    [self timerFired];
     [self.collectionView reloadData];
 }
 
@@ -93,15 +141,12 @@ static NSString * const reuseIdentifier = @"Cell";
     // Pass the selected object to the new view controller.
 }
 */
-
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
 
     return 1;
 }
-
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 
     return self.data.companyList.count;
@@ -109,15 +154,15 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MyCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
     // Configure the cell
-    
    
     Company * temp = self.data.companyList[indexPath.row];
-    cell.cellLabel.text = temp.companyName;
+    NSString *tempString = [NSString stringWithFormat:@"%@   %@",temp.companyName,temp.stockPrice];
+    cell.cellLabel.text = tempString;
     cell.cellLabel.textColor = [UIColor whiteColor];
     cell.cellLogo.image =[UIImage imageNamed:temp.companyImg];
     return cell;
+    [tempString release];
 }
 
 #pragma mark <UICollectionViewDelegate>
@@ -164,14 +209,10 @@ static NSString * const reuseIdentifier = @"Cell";
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
 	return NO;
 }
-
 - (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
 	return NO;
 }
-
 - (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-   
-  
 }
 -(void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
     [self beginInteractiveMovementForItemAtIndexPath:sourceIndexPath];
@@ -183,13 +224,10 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.data.companyList removeObjectAtIndex:sourceIndexPath.row];
     [self.data.companyList insertObject:tempString atIndex:destinationIndexPath.row];
     [self.coreData companyRearrange];
-    
-    
+    [self.undoButton setEnabled:YES];
+    [self.undoButton setTintColor:[UIColor redColor]];
 }
 - (BOOL)beginInteractiveMovementForItemAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
 }
-
-
-
 @end

@@ -11,6 +11,7 @@
                 <outlet property="CompanyLogoLabel" destination="lie-Ze-0sS" id="Gpg-oC-rwt"/>
                 <outlet property="CompanyNameLabel" destination="oaC-NQ-qcj" id="gE3-Hv-T3W"/>
                 <outlet property="companyName" destination="ETg-wE-XwV" id="co3-hx-SmT"/>
+                <outlet property="stockSymbolTxt" destination="xTE-IO-Kz7" id="obh-1U-fzq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -56,23 +57,51 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GlF-xF-YKn">
-                    <rect key="frame" x="243" y="453" width="115" height="30"/>
+                    <rect key="frame" x="243" y="508" width="115" height="30"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="115" id="Diq-Cf-pIA"/>
+                        <constraint firstAttribute="height" constant="30" id="dgC-Xb-nbE"/>
                         <constraint firstAttribute="height" constant="30" id="eZC-WK-99s"/>
                         <constraint firstAttribute="width" constant="115" id="tB0-OS-Cnd"/>
                     </constraints>
                     <state key="normal" title="Create Company">
                         <color key="titleColor" red="0.1764705882" green="0.1843137255" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="eZC-WK-99s"/>
+                            <exclude reference="tB0-OS-Cnd"/>
+                        </mask>
+                    </variation>
                     <connections>
                         <action selector="createCompanyButton:" destination="-1" eventType="touchUpInside" id="k6j-QD-qcF"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Stock Symbol" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aN5-ho-Z6T">
+                    <rect key="frame" x="182" y="372" width="236" height="27"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="27" id="B9p-7i-yy5"/>
+                        <constraint firstAttribute="width" constant="236" id="WMS-vz-8Yg"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xTE-IO-Kz7">
+                    <rect key="frame" x="252" y="407" width="97" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="e0P-PZ-BlU"/>
+                        <constraint firstAttribute="width" constant="97" id="yC9-MC-gb7"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
             </subviews>
             <color key="backgroundColor" red="0.58075535680000001" green="0.049096058829999997" blue="0.74350931190000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="ETg-wE-XwV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3Ly-zH-93R"/>
+                <constraint firstItem="GlF-xF-YKn" firstAttribute="top" secondItem="xTE-IO-Kz7" secondAttribute="bottom" constant="71" id="4jy-u9-Jhc"/>
                 <constraint firstItem="ETg-wE-XwV" firstAttribute="top" secondItem="oaC-NQ-qcj" secondAttribute="bottom" constant="8" id="5aP-2I-aJN"/>
                 <constraint firstItem="BAj-xg-Wl2" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="9rW-wK-kFB"/>
                 <constraint firstAttribute="trailing" secondItem="oaC-NQ-qcj" secondAttribute="trailing" constant="179" id="AWJ-un-4vS"/>
@@ -87,11 +116,16 @@
                 <constraint firstItem="lie-Ze-0sS" firstAttribute="top" secondItem="ETg-wE-XwV" secondAttribute="bottom" constant="76" id="WEZ-IJ-ov7"/>
                 <constraint firstItem="lie-Ze-0sS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="d0u-bB-wmg"/>
                 <constraint firstAttribute="trailing" secondItem="ETg-wE-XwV" secondAttribute="trailing" constant="220" id="dIa-Kx-fZn"/>
+                <constraint firstItem="xTE-IO-Kz7" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="h8m-uH-crd"/>
                 <constraint firstItem="GlF-xF-YKn" firstAttribute="top" secondItem="BAj-xg-Wl2" secondAttribute="bottom" constant="95" id="kdJ-4T-9zo"/>
+                <constraint firstItem="aN5-ho-Z6T" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="nZl-6c-veT"/>
                 <constraint firstItem="BAj-xg-Wl2" firstAttribute="top" secondItem="lie-Ze-0sS" secondAttribute="bottom" constant="8" id="oPn-a9-F0X"/>
+                <constraint firstItem="GlF-xF-YKn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vNa-eU-ebS"/>
+                <constraint firstItem="xTE-IO-Kz7" firstAttribute="top" secondItem="aN5-ho-Z6T" secondAttribute="bottom" constant="8" id="vWc-2A-iok"/>
                 <constraint firstAttribute="trailing" secondItem="lie-Ze-0sS" secondAttribute="trailing" constant="156" id="vjp-IP-2h5"/>
                 <constraint firstItem="oaC-NQ-qcj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="180" id="whf-Qq-eKH"/>
                 <constraint firstItem="lie-Ze-0sS" firstAttribute="top" secondItem="ETg-wE-XwV" secondAttribute="bottom" constant="76" id="x1j-K5-tOm"/>
+                <constraint firstItem="aN5-ho-Z6T" firstAttribute="top" secondItem="BAj-xg-Wl2" secondAttribute="bottom" constant="14" id="zDa-Jw-Gyp"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
@@ -105,6 +139,8 @@
                     <exclude reference="FpR-Ft-ZSi"/>
                     <exclude reference="I3T-Er-ngz"/>
                     <exclude reference="OjK-vs-Vxg"/>
+                    <exclude reference="NMz-cg-WE7"/>
+                    <exclude reference="kdJ-4T-9zo"/>
                 </mask>
             </variation>
         </view>

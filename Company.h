@@ -13,14 +13,13 @@
 @property(nonatomic,strong) NSMutableArray *productObjectArray;
 @property(nonatomic,strong) NSString *companyTitle;
 @property(nonatomic,strong) NSString *companyImg;
-@property(nonatomic,strong) NSMutableArray *websiteArray;
-@property(nonatomic,strong)NSMutableArray *productImgArray;
-@property(nonatomic,strong)NSMutableArray *productArray;
 @property(nonatomic,strong) NSString *companyName;
 @property(nonatomic) NSInteger index;
 @property(nonatomic) NSInteger ID;
 @property(nonatomic) NSInteger Pk;
-@property(nonatomic,strong) NSMutableArray *productNameArray;
+@property(nonatomic,strong) NSString *stockSymbol;
+@property(nonatomic) BOOL *edited;
+@property(nonatomic,strong) NSString *stockPrice;
 
 +(id)CompanyManager;
 @end

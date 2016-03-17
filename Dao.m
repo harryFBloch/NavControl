@@ -8,6 +8,7 @@
 
 #import "Dao.h"
 
+
 @implementation Dao
 
 +(id)sharedManager{
@@ -43,6 +44,7 @@
             tempCompany.index = [temp.index integerValue];
             tempCompany.productObjectArray = [[NSMutableArray alloc]init];
             tempCompany.Pk = i;
+            tempCompany.stockSymbol = temp.stockSymbol;
                 for (int j = 0; j<self.TempProducts.count; j++) {
                     Products *tempp = self.TempProducts[j];
                     if ([tempp.companyID integerValue]== tempCompany.ID) {
@@ -59,13 +61,12 @@
                 tempProduct.index = [temp1.index integerValue];
                 tempProduct.PK = j;
                 if (tempProduct.companyID == tempCompany.ID) {
-                  
                     [tempCompany.productObjectArray replaceObjectAtIndex:tempProduct.index withObject:tempProduct];
                 }
+                [tempProduct release];
             }  
             [self.companyList replaceObjectAtIndex:tempCompany.index withObject:tempCompany];
         }
-
     }
 }
 -(void)hardCodedData{
@@ -80,6 +81,7 @@
     apple.ID = 1;
     apple.index = 0;
     apple.Pk = 0;
+    apple.stockSymbol = @"AAPL";
     //create apple products
     Product *ipad = [[Product alloc]init];
     ipad.productName = @"iPad";
@@ -104,6 +106,9 @@
     //store apple products in array
     
     apple.productObjectArray = [NSMutableArray arrayWithObjects:ipad,ipod,iphone, nil];
+    [ipad release];
+    [ipod release];
+    [iphone release];
     
     //create samsung
     
@@ -114,6 +119,7 @@
     samsung.companyName = @"Samsung";
     samsung.index = 1;
     samsung.Pk = 1;
+    samsung.stockSymbol = @"SSNLF";
     
     Product *galaxyS6 = [[Product alloc]init];
     galaxyS6.productName = @"Galaxy S6";
@@ -139,6 +145,9 @@
     
     
     samsung.productObjectArray = [NSMutableArray arrayWithObjects:galaxyS6,galaxyNote,galaxyTab, nil];
+    [galaxyNote release];
+    [galaxyS6 release];
+    [galaxyTab release];
     
     //create HTC
     Company *htc = [[Company alloc] init];
@@ -148,6 +157,7 @@
     htc.ID = 3;
     htc.index = 2;
     htc.Pk = 2;
+    htc.stockSymbol = @"2498.TW";
     
     Product *oneA9 = [[Product alloc]init];
     oneA9.productName = @"ONE A9";
@@ -170,8 +180,10 @@
     oneM9.companyID =3;
     oneM9.index = 2;
     
-    
     htc.productObjectArray = [NSMutableArray arrayWithObjects:oneA9,desire,oneM9, nil];
+    [oneA9 release];
+    [desire release];
+    [oneM9 release];
     
     //create blackberry
     Company *blackberry = [[Company alloc]init];
@@ -181,7 +193,7 @@
     blackberry.companyName = @"Blackberry";
     blackberry.index = 3;
     blackberry.Pk = 3;
-    
+    blackberry.stockSymbol = @"BBRY";
     
     Product *classic = [[Product alloc]init];
     classic.productName = @"Classic";
@@ -206,6 +218,9 @@
     
     
     blackberry.productObjectArray = [NSMutableArray arrayWithObjects:classic,leap,z30, nil];
+    [classic release];
+    [leap release];
+    [z30 release];
     
     self.companyList = [NSMutableArray arrayWithObjects: apple,samsung,htc,blackberry,nil];
     self.products = [NSMutableArray arrayWithObjects:ipad,ipod,iphone,
@@ -217,7 +232,7 @@
         Company *temp = self.companyList[i];
         NSNumber *tempN = [NSNumber numberWithInteger:temp.ID];
         NSNumber *tempInt = [NSNumber numberWithInteger:i];
-        [coredata CreateCompany:temp.companyName companyTitle:temp.companyTitle CompanyImg:temp.companyImg companyIDnumber:tempN index:tempInt];
+        [coredata CreateCompany:temp.companyName companyTitle:temp.companyTitle CompanyImg:temp.companyImg companyIDnumber:tempN index:tempInt stockSymbol:temp.stockSymbol];
         for (int j=0; j<temp.productObjectArray.count; j++) {
             Product *tempP = temp.productObjectArray[j];
             NSNumber *tempINT2 = [NSNumber numberWithInteger:j];

@@ -54,7 +54,6 @@
 - (IBAction)createproduct:(id)sender {
     Dao *data = [Dao sharedManager];
     MyDataController *coreData = [MyDataController sharedManager];
-    
     if (self.editingMode) {
         self.currentProduct.productName = self.productNameTxt.text;
         self.currentProduct.productImg = self.productLogoTxt.text;
@@ -70,8 +69,13 @@
         self.currentProduct.companyID = self.currentCompany.ID;
         self.currentProduct.index = self.currentCompany.productObjectArray.count;
         self.currentProduct.PK = coreData.produtcs.count;
+        if (!self.currentCompany.productObjectArray) {
+             self.currentCompany.productObjectArray = [[NSMutableArray alloc]init];
+        }
         [self.currentCompany.productObjectArray addObject:self.currentProduct];
-        [data.companyList replaceObjectAtIndex:self.currentCompany.Pk withObject:self.currentCompany];
+        ProductCollectionViewController *tempView = [ProductCollectionViewController sharedManager];
+        tempView.currentCompany = self.currentCompany;
+        [data.companyList replaceObjectAtIndex:self.currentCompany.index withObject:self.currentCompany];
     [coreData addProduct:self.currentProduct];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
